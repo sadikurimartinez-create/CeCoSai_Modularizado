@@ -1,3 +1,4 @@
+(function() {
 // ============================================
 // DESCARGA DE ESCRITOS PROCESALES (WORD)
 // ============================================
@@ -74,4 +75,6 @@ function exportarEscritoDirecto(tipo) {
     if (typeof registrarEscritoEnHistorial === 'function' && typeof calcularAcreditacionPorTipo === 'function') registrarEscritoEnHistorial(tipo, calcularAcreditacionPorTipo(tipo));
     if (typeof showToast === 'function') showToast('✓ ' + filename.replace(/_/g, ' ') + ' exportado correctamente a Word', 'success');
 }
-window.exportarWordReal = exportarWordReal; window.exportarEscritoDirecto = exportarEscritoDirecto;
+window.exportarWordReal = exportarWordReal; 
+window.exportarEscritoDirecto = exportarEscritoDirecto;
+})();

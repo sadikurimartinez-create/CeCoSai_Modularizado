@@ -1,3 +1,4 @@
+(function() {
 // ============================================
 // UI DE ESCRITOS PROCESALES
 // ============================================
@@ -112,3 +113,4 @@ window.actualizarAcreditacionEscritos = actualizarAcreditacionEscritos;
 window.generarEscrito = generarEscrito;
 window.registrarEscritoEnHistorial = registrarEscritoEnHistorial;
 window.validarSugerenciasEscrito = validarSugerenciasEscrito;
+})();

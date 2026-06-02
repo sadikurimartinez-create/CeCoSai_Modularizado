@@ -1,3 +1,4 @@
+(function() {
 // ============================================
 // PLANTILLAS DE ESCRITOS PROCESALES
 // ============================================
@@ -218,3 +219,4 @@ function generarContenidoEscrito(tipo) {
     return contenido;
 }
 window.generarContenidoEscrito = generarContenidoEscrito;
+})();

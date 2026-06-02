@@ -1,3 +1,4 @@
+(function() {
 // ============================================
 // LÓGICA DE INTERCONEXIÓN Y DATOS DE ESCRITOS
 // ============================================
@@ -39,3 +40,4 @@ function calcularAcreditacionPorTipo(tipo) {
 }
 window.datosDelSistema = datosDelSistema;
 window.calcularAcreditacionPorTipo = calcularAcreditacionPorTipo;
+})();

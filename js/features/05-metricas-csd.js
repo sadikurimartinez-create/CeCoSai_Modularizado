@@ -1,3 +1,4 @@
+(function() {
 // =============================================
 // DATOS Y MÉTRICAS POR CSD (INDIVIDUALIZADAS)
 // =============================================
@@ -325,3 +326,10 @@ function exportarMetricasCSD() {
     showToast('✓ Métricas de ' + datosCSD[csdId].id + ' exportadas a PDF', 'success');
 }
 
+        // Exponer globales necesarias para la UI
+        window.datosCSD = datosCSD;
+        window.actualizarMetricasCSD = actualizarMetricasCSD;
+        window.aceptarRecomendacionesIA = aceptarRecomendacionesIA;
+        window.rechazarRecomendacionesIA = rechazarRecomendacionesIA;
+        window.exportarMetricasCSD = exportarMetricasCSD;
+})();
