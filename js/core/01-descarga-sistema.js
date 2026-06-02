@@ -1,3 +1,4 @@
+(function() {
         // DESCARGA DE ARCHIVO
         function descargarArchivo() {
             const html = document.documentElement.outerHTML;
@@ -40,9 +41,6 @@
                 console.warn('Error al intentar enviar currentCase al backend:', e);
             }
         }
-
-        // INICIALIZACIÓN - SIN DETENIDO por defecto
-        document.addEventListener('DOMContentLoaded', function() {
-            toggleDetenidos(false);
-        });
-
+        
+        window.descargarArchivo = descargarArchivo;
+})();

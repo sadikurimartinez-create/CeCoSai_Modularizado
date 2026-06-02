@@ -1,3 +1,4 @@
+(function() {
         var EjesRectoresSAI = {
             CPEUM: 'C:\\Users\\sadi7\\OneDrive\\Desktop\\Eco SAI\\CeCoSai\\CURSOR CECOSAI\\CPEUM.pdf',
             CNPP: 'C:\\Users\\sadi7\\OneDrive\\Desktop\\Eco SAI\\CeCoSai\\CURSOR CECOSAI\\CNPP.pdf'
@@ -7,7 +8,11 @@
             legislaciones: [],
             ejesRectores: EjesRectoresSAI
         };
-        currentCase.marcoJuridico = marcoJuridico;
+        
+        if (typeof window.currentCase === 'undefined') {
+            window.currentCase = {};
+        }
+        window.currentCase.marcoJuridico = marcoJuridico;
 
 
         function actualizarMarcoJuridicoUI() {
@@ -39,7 +44,7 @@
             var file = event.target.files && event.target.files[0];
             if (!file) return;
             marcoJuridico.codigoPenal = { nombre: file.name, fecha: new Date().toISOString() };
-            currentCase.marcoJuridico = marcoJuridico;
+            window.currentCase.marcoJuridico = marcoJuridico;
             actualizarMarcoJuridicoUI();
             if (typeof showToast === 'function') showToast('Código Penal establecido como filtro principal de tipicidad.', 'success');
             event.target.value = '';
@@ -50,7 +55,7 @@
             files.forEach(function(file) {
                 marcoJuridico.legislaciones.push({ nombre: file.name, fecha: new Date().toISOString() });
             });
-            currentCase.marcoJuridico = marcoJuridico;
+            window.currentCase.marcoJuridico = marcoJuridico;
             actualizarMarcoJuridicoUI();
             if (typeof showToast === 'function') showToast(files.length + ' legislación(es) agregada(s) al marco jurídico.', 'success');
             event.target.value = '';
@@ -60,7 +65,7 @@
         }
 
         var documentosCaso = [];
-        if (typeof currentCase !== 'undefined' && currentCase) currentCase.documentosCaso = documentosCaso;
+        window.currentCase.documentosCaso = documentosCaso;
         function actualizarListaDocumentosCaso() {
             var lista = document.getElementById('lista-documentos-caso');
             var empty = document.getElementById('documentos-caso-empty');
@@ -84,7 +89,7 @@
             files.forEach(function(file) {
                 documentosCaso.push({ nombre: file.name, fecha: new Date().toISOString(), tamano: file.size });
             });
-            if (typeof currentCase !== 'undefined' && currentCase) currentCase.documentosCaso = documentosCaso;
+            window.currentCase.documentosCaso = documentosCaso;
             actualizarListaDocumentosCaso();
             if (typeof showToast === 'function') showToast(files.length + ' documento(s) agregado(s) al caso.', 'success');
             event.target.value = '';
@@ -92,6 +97,18 @@
         function quitarDocumentoCaso(idx) {
             if (idx < 0 || idx >= documentosCaso.length) return;
             documentosCaso.splice(idx, 1);
-            if (typeof currentCase !== 'undefined' && currentCase) currentCase.documentosCaso = documentosCaso;
+            window.currentCase.documentosCaso = documentosCaso;
             actualizarListaDocumentosCaso();
         }
+
+        // Exponer funciones y estado al entorno global
+        window.marcoJuridico = marcoJuridico;
+        window.documentosCaso = documentosCaso;
+        window.handleCodigoPenalChange = handleCodigoPenalChange;
+        window.handleLegislacionesChange = handleLegislacionesChange;
+        window.tieneCodigoPenalSeleccionado = tieneCodigoPenalSeleccionado;
+        window.handleDocumentosCasoChange = handleDocumentosCasoChange;
+        window.quitarDocumentoCaso = quitarDocumentoCaso;
+        window.actualizarMarcoJuridicoUI = actualizarMarcoJuridicoUI;
+        window.actualizarListaDocumentosCaso = actualizarListaDocumentosCaso;
+})();

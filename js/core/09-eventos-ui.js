@@ -204,6 +204,23 @@
         });
 
         document.addEventListener('change', function (event) {
+            var target = event.target;
+            
+            // Estilos dinámicos para radio y checkbox (Delegación)
+            if (target.matches('.radio-item input, .checkbox-item input')) {
+                var name = target.name;
+                if (name) {
+                    document.querySelectorAll('input[name="' + name + '"]').forEach(function(radio) {
+                        var container = radio.closest('.radio-item, .checkbox-item');
+                        if (container) container.classList.remove('selected');
+                    });
+                }
+                if (target.checked) {
+                    var container = target.closest('.radio-item, .checkbox-item');
+                    if (container) container.classList.add('selected');
+                }
+            }
+
             var element = event.target.closest('[data-page-size-table]');
             if (!element) return;
 

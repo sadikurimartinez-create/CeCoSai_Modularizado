@@ -1,11 +1,4 @@
         // =============================================
-        // Función para mostrar/ocultar sección de detenidos
-        function toggleDetenidos(tieneDetenido) {
-            const info = document.getElementById('detenidos-info');
-            if (info) {
-                info.style.display = tieneDetenido ? 'block' : 'none';
-            }
-        }
 
         // Guardar Sujeto (función original)
         function guardarSujeto() {
@@ -51,7 +44,6 @@
         // =============================================
 
 // Exponer globalmente
-window.toggleDetenidos = toggleDetenidos;
 window.guardarSujeto = guardarSujeto;
 window.guardarActividad = guardarActividad;
 window.generarOficio = generarOficio;

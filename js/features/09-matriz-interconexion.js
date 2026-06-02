@@ -1,3 +1,4 @@
+(function() {
         // FUNCIONES PARA MATRIZ DE INTEGRACIÓN
         // =============================================
         function validarMatrizIntegracion() {
@@ -15,14 +16,14 @@
                     }
                 }
             });
-            if (currentCase && currentCase.matrizIntegracion) {
-                currentCase.matrizIntegracion.filasTotales = filasTotales;
-                currentCase.matrizIntegracion.filasValidadas = filasTotales - filasRuido;
-                currentCase.matrizIntegracion.filasRuido = filasRuido;
-                currentCase.matrizIntegracion.ultimaActualizacion = new Date().toISOString();
+            if (window.currentCase && window.currentCase.matrizIntegracion) {
+                window.currentCase.matrizIntegracion.filasTotales = filasTotales;
+                window.currentCase.matrizIntegracion.filasValidadas = filasTotales - filasRuido;
+                window.currentCase.matrizIntegracion.filasRuido = filasRuido;
+                window.currentCase.matrizIntegracion.ultimaActualizacion = new Date().toISOString();
             }
-            if (SAIEngine && SAIEngine.picMatriz) {
-                SAIEngine.picMatriz.registrarEvento('validar_todo', {
+            if (window.SAIEngine && window.SAIEngine.picMatriz) {
+                window.SAIEngine.picMatriz.registrarEvento('validar_todo', {
                     filasTotales,
                     filasValidadas: filasTotales - filasRuido,
                     filasRuido
@@ -33,19 +34,19 @@
         }
 
         function actualizarMatrizIntegracion() {
-            if (SAIEngine && SAIEngine.picMatriz) {
-                SAIEngine.picMatriz.registrarEvento('actualizar', {
-                    resumen: currentCase && currentCase.matrizIntegracion ? currentCase.matrizIntegracion : null
+            if (window.SAIEngine && window.SAIEngine.picMatriz) {
+                window.SAIEngine.picMatriz.registrarEvento('actualizar', {
+                    resumen: window.currentCase && window.currentCase.matrizIntegracion ? window.currentCase.matrizIntegracion : null
                 });
             }
             showToast('Matriz de Integración actualizada desde todos los módulos conectados', 'success');
         }
 
         function exportarMatrizIntegracion() {
-            if (SAIEngine && SAIEngine.picMatriz) {
-                SAIEngine.picMatriz.registrarEvento('exportar', {
+            if (window.SAIEngine && window.SAIEngine.picMatriz) {
+                window.SAIEngine.picMatriz.registrarEvento('exportar', {
                     formato: 'html/externo',
-                    resumen: currentCase && currentCase.matrizIntegracion ? currentCase.matrizIntegracion : null
+                    resumen: window.currentCase && window.currentCase.matrizIntegracion ? window.currentCase.matrizIntegracion : null
                 });
             }
             showToast('Matriz de Integración exportada correctamente', 'success');
@@ -90,3 +91,11 @@
             showToast('Interconexión actualizada desde NC, PIC, Escalera y Métricas', 'success');
         }
 
+        // Exponer globalmente
+        window.validarMatrizIntegracion = validarMatrizIntegracion;
+        window.actualizarMatrizIntegracion = actualizarMatrizIntegracion;
+        window.exportarMatrizIntegracion = exportarMatrizIntegracion;
+        window.validarSugerenciasInterconexionIA = validarSugerenciasInterconexionIA;
+        window.rechazarSugerenciasInterconexionIA = rechazarSugerenciasInterconexionIA;
+        window.actualizarInterconexionDesdeModulos = actualizarInterconexionDesdeModulos;
+})();

@@ -59,19 +59,6 @@
             element.textContent = content.classList.contains('show') ? 'Ocultar Sugerencias' : 'Ver Sugerencias';
         }
 
-        // Radio item selection styling
-        document.querySelectorAll('.radio-item input, .checkbox-item input').forEach(input => {
-            input.addEventListener('change', function() {
-                const name = this.name;
-                document.querySelectorAll(`input[name="${name}"]`).forEach(radio => {
-                    radio.closest('.radio-item, .checkbox-item').classList.remove('selected');
-                });
-                if (this.checked) {
-                    this.closest('.radio-item, .checkbox-item').classList.add('selected');
-                }
-            });
-        });
-
         // Constitutional Timer (Demo) - CONDICIONAL
         let timeRemaining = 48 * 60 * 60;
         let timerInterval = null;
@@ -116,51 +103,7 @@
             }
         }
 
-        // GENERACIÓN DE PREGUNTAS IA - FRICCIÓN LÓGICA
-        const preguntasImputacion = [
-            "¿Cómo se acredita el acuerdo previo entre los coautores?",
-            "¿La cadena de custodia del arma está debidamente documentada?",
-            "¿El reconocimiento de imputados fue libre de sugestión?",
-            "¿Existe evidencia de la vigilancia previa a las víctimas?",
-            "¿Se puede acreditar la adquisición o procedencia del arma?",
-            "¿Las víctimas fueron atendidas psicológicamente?",
-            "¿Hay registro de las llamadas de extorsión realizadas?"
-        ];
-        
-        const preguntasAcusacion = [
-            "¿Se ha valorado correctamente el daño psicológico?",
-            "¿Se cuenta con evidencia para acreditar la coautoría del prófugo?",
-            "¿Los dictámenes periciales cumplen con el Art. 368 CNPP?",
-            "¿Se han considerado las agravantes por pluralidad de víctimas?",
-            "¿El monto del rescate exigido está documentado?",
-            "¿Se solicitará extinción de dominio sobre los bienes asegurados?",
-            "¿Cuál es la estrategia si el prófugo es detenido posteriormente?"
-        ];
-        
-        let preguntasGeneradasImp = 0;
-        let preguntasGeneradasAcu = 0;
-
-        function generarPreguntasFriccion(tipo) {
-            const lista = document.getElementById('lista-' + tipo);
-            const preguntas = tipo === 'imputacion' ? preguntasImputacion : preguntasAcusacion;
-            let contador = tipo === 'imputacion' ? preguntasGeneradasImp : preguntasGeneradasAcu;
-            
-            if (contador >= preguntas.length) {
-                showToast('No hay más preguntas disponibles', 'warning');
-                return;
-            }
-            
-            const numPreguntas = Math.min(2, preguntas.length - contador);
-            for (let i = 0; i < numPreguntas; i++) {
-                const nuevoLi = document.createElement('li');
-                nuevoLi.style.marginBottom = '8px';
-                nuevoLi.textContent = preguntas[contador + i];
-                lista.appendChild(nuevoLi);
-            }
-            
-            if (tipo === 'imputacion') preguntasGeneradasImp += numPreguntas;
-            else preguntasGeneradasAcu += numPreguntas;
-            
-            showToast(`✓ ${numPreguntas} preguntas generadas por IA`, 'success');
-        }
-
+        // Exponer UI Básica al entorno global
+        window.showTab = showTab;
+        window.toggleSuggestion = toggleSuggestion;
+        window.toggleDetenidos = toggleDetenidos;

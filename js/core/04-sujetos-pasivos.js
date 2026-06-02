@@ -1,5 +1,6 @@
         // FUNCIONES PARA SUJETOS PASIVOS
         // =============================================
+(function() {
         let sujetosPasivos = [];
         let contadorSP = 1;
 
@@ -124,3 +125,9 @@
         }
 
         // =============================================
+
+        // Exponer globalmente
+        window.sujetosPasivos = sujetosPasivos;
+        window.guardarSujetoPasivo = guardarSujetoPasivo;
+        window.eliminarSujetoPasivo = eliminarSujetoPasivo;
+})();
