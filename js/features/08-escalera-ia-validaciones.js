@@ -178,6 +178,7 @@ Calcula las penas aplicables según el Código Penal de Aguascalientes considera
 2. Multa (en días o UMA)
 3. Reparación del daño
 4. Medidas de seguridad aplicables
+5. REGLA CRÍTICA: Si la acreditación es >= 90%, redacta una "conclusionIntegradora" formal, jurídica y concluyente. Debe afirmar la procedencia legal de la sanción (Punibilidad) con base en las pruebas y el CPA, y descartar expresa y categóricamente cualquier Excusa Absolutoria.
 
 RESPONDE EN JSON:
 {
@@ -186,7 +187,8 @@ RESPONDE EN JSON:
     "reparacionDano": {"monto": "...", "concepto": "..."},
     "medidasSeguridad": ["lista de medidas aplicables"],
     "acreditacion": [0-100],
-    "fundamentacion": "[Artículos aplicables del CPA]"
+    "fundamentacion": "[Artículos aplicables del CPA]",
+    "conclusionIntegradora": "[Párrafo conclusivo integrador si acreditación >= 90%, sino null]"
 }`;
 
     try {
@@ -209,6 +211,15 @@ RESPONDE EN JSON:
             progressBar.style.width = resultado.acreditacion + '%';
             progressBar.className = 'progress-fill ' + 
                 (resultado.acreditacion >= 70 ? 'high' : resultado.acreditacion >= 40 ? 'medium' : 'low');
+        }
+        
+        const contenidoIA = document.getElementById('punibilidad-ia-contenido');
+        if (contenidoIA) {
+            const oldConclusion = document.getElementById('punibilidad-conclusion-ia');
+            if (oldConclusion) oldConclusion.remove();
+            if (resultado.conclusionIntegradora) {
+                contenidoIA.innerHTML += `<div id="punibilidad-conclusion-ia" style="margin-top: 12px; padding: 12px; background: #ecfdf5; border-left: 4px solid #10b981; border-radius: 6px; font-size: 0.8rem; color: #065f46;"><strong><i class="fas fa-balance-scale"></i> Conclusión Integradora (SAI):</strong><br><span style="font-style: italic; margin-top:6px; display:block; text-align:justify;">"${resultado.conclusionIntegradora}"</span></div>`;
+            }
         }
         
         EscaleraIA.elementosValidados.punibilidad.iaResultado = resultado;

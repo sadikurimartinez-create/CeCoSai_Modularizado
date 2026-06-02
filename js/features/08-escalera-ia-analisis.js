@@ -33,6 +33,7 @@ INSTRUCCIONES:
 2. Clasifica el tipo de conducta: Acción, Omisión o Comisión por Omisión
 3. Evalúa el porcentaje de acreditación (0-100%) basándote en los resultados investigativos
 4. Si la acreditación es menor al 70%, sugiere hasta 3 actividades investigativas específicas
+5. REGLA CRÍTICA: Si la acreditación es >= 90%, redacta una "conclusionIntegradora" formal, jurídica y concluyente. Esta debe integrar la comprobación del aspecto positivo, referir los medios de prueba, fundamentarse en la doctrina de Porte Petit y el CPA, y descartar expresa y categóricamente cualquier causal del aspecto negativo (Ausencia de Conducta).
 
 RESPONDE EN JSON:
 {
@@ -40,6 +41,7 @@ RESPONDE EN JSON:
     "descripcionConducta": "[Descripción breve de la conducta detectada]",
     "acreditacion": [0-100],
     "fundamentacion": "[Explicación jurídica breve]",
+    "conclusionIntegradora": "[Párrafo conclusivo integrador si acreditación >= 90%, sino null]",
     "alertaFiscal": [true si acreditación < 70%, false si no],
     "sugerenciasActividades": [
         {"actividad": "...", "objetivo": "...", "aportacion": [%]}
@@ -89,6 +91,15 @@ function actualizarUIConducta(resultado) {
         radio.checked = true;
         radio.closest('.radio-item').classList.add('selected');
     }
+    
+    // Añadir conclusión integradora si existe
+    const container = document.getElementById('conducta-ia-analisis');
+    const oldConclusion = document.getElementById('conducta-conclusion-ia');
+    if (oldConclusion) oldConclusion.remove();
+    
+    if (resultado.conclusionIntegradora) {
+        container.innerHTML += `<div id="conducta-conclusion-ia" style="margin-top: 12px; padding: 12px; background: #ecfdf5; border-left: 4px solid #10b981; border-radius: 6px; font-size: 0.8rem; color: #065f46;"><strong><i class="fas fa-balance-scale"></i> Conclusión Integradora (SAI):</strong><br><span style="font-style: italic; margin-top:6px; display:block; text-align:justify;">"${resultado.conclusionIntegradora}"</span></div>`;
+    }
 }
 
 // Analizar TIPICIDAD con IA (Clasificación según Porte Petit)
@@ -115,6 +126,7 @@ ${resultados.map(r => `- ${r.actividad}: ${r.resultado}`).join('\n') || 'Sin res
 
 INSTRUCCIONES:
 Clasifica el delito según los criterios de Porte Petit y evalúa la acreditación de cada elemento del tipo penal.
+REGLA CRÍTICA: Si la "acreditacionGlobal" es >= 90%, redacta una "conclusionIntegradora" formal, jurídica y concluyente. Debe integrar la comprobación de los elementos objetivos, subjetivos y normativos de la Tipicidad, sustentarse en los medios de prueba, la doctrina de Porte Petit y el CPA, y descartar expresa y categóricamente cualquier causal de Atipicidad.
 
 RESPONDE EN JSON:
 {
@@ -135,6 +147,7 @@ RESPONDE EN JSON:
         "calificativa": {"descripcion": "...", "acreditacion": [0-100]}
     },
     "acreditacionGlobal": [0-100],
+    "conclusionIntegradora": "[Párrafo conclusivo integrador si acreditacionGlobal >= 90%, sino null]",
     "alertaFiscal": [true/false],
     "sugerenciasActividades": [{"elemento": "...", "actividad": "...", "aportacion": [%]}]
 }`;
@@ -206,6 +219,15 @@ function actualizarUITipicidad(resultado) {
         progressBar.className = 'progress-fill ' + 
             (resultado.acreditacionGlobal >= 70 ? 'high' : resultado.acreditacionGlobal >= 40 ? 'medium' : 'low');
     }
+    
+    // Añadir conclusión integradora si existe
+    const container = document.getElementById('tipicidad-clasificacion-contenido');
+    const oldConclusion = document.getElementById('tipicidad-conclusion-ia');
+    if (oldConclusion) oldConclusion.remove();
+    
+    if (resultado.conclusionIntegradora) {
+        container.innerHTML += `<div id="tipicidad-conclusion-ia" style="margin-top: 12px; padding: 12px; background: #ecfdf5; border-left: 4px solid #10b981; border-radius: 6px; font-size: 0.8rem; color: #065f46;"><strong><i class="fas fa-balance-scale"></i> Conclusión Integradora (SAI):</strong><br><span style="font-style: italic; margin-top:6px; display:block; text-align:justify;">"${resultado.conclusionIntegradora}"</span></div>`;
+    }
 }
 
 // Analizar elemento genérico con IA
@@ -236,6 +258,7 @@ INSTRUCCIONES:
 1. Analiza si el elemento ${config.nombre} se acredita conforme al Código Penal de Aguascalientes
 2. Evalúa el porcentaje de acreditación basándote en los resultados investigativos
 3. Si la acreditación es menor al 70%, genera alerta al Fiscal y sugiere actividades
+4. REGLA CRÍTICA: Si la acreditación es >= 90%, redacta una "conclusionIntegradora" formal, jurídica y concluyente. Debe integrar la comprobación del aspecto positivo (\${config.nombre}), sustentarse en los resultados probatorios, la doctrina de Porte Petit y el CPA, y descartar expresa y categóricamente el aspecto negativo correspondiente (Causas de justificación, Inimputabilidad o Inculpabilidad).
 
 RESPONDE EN JSON:
 {
@@ -243,6 +266,7 @@ RESPONDE EN JSON:
     "acreditado": [true/false],
     "acreditacion": [0-100],
     "fundamentacion": "[Explicación jurídica basada en CPA]",
+    "conclusionIntegradora": "[Párrafo conclusivo integrador si acreditación >= 90%, sino null]",
     "actividadesSoporte": ["Lista de actividades que soportan la acreditación"],
     "alertaFiscal": [true si acreditación < 70%],
     "sugerenciasActividades": [{"actividad": "...", "objetivo": "...", "aportacion": [%]}]
@@ -291,7 +315,15 @@ function actualizarUIElemento(elemento, resultado) {
     // Actualizar contenido de análisis IA
     const contenidoIA = document.getElementById(`${elemento}-ia-contenido`);
     if (contenidoIA && resultado.fundamentacion) {
+        // Eliminar conclusión anterior si existe para no duplicar
+        const oldConclusion = document.getElementById(`${elemento}-conclusion-ia`);
+        if (oldConclusion) oldConclusion.remove();
+        
         contenidoIA.innerHTML += `<p style="margin-top: 8px; font-style: italic;">${resultado.fundamentacion}</p>`;
+        
+        if (resultado.conclusionIntegradora) {
+            contenidoIA.innerHTML += `<div id="${elemento}-conclusion-ia" style="margin-top: 12px; padding: 12px; background: #ecfdf5; border-left: 4px solid #10b981; border-radius: 6px; font-size: 0.8rem; color: #065f46;"><strong><i class="fas fa-balance-scale"></i> Conclusión Integradora (SAI):</strong><br><span style="font-style: italic; margin-top:6px; display:block; text-align:justify;">"${resultado.conclusionIntegradora}"</span></div>`;
+        }
     }
 }
 
