@@ -60,11 +60,53 @@ function cerrarPanelInferenciaMic(event) {
 window.descargarMIC = function () {
     if (typeof showToast === 'function') showToast('Descarga PNG del grafo MIC se implementará en una versión siguiente.', 'info');
 };
+
+function exportarMICWord() {
+    if (!window.MIC_Module || !window.MIC_Module.nodesDS) {
+        if (typeof showToast === 'function') showToast('No hay datos en el MIC para exportar.', 'warning');
+        return;
+    }
+
+    var nodos = window.MIC_Module.nodesDS.get();
+    var probandum = nodos.find(function(n) { return n.tipoMic === 'probandum'; });
+    var atomos = nodos.filter(function(n) { return n.tipoMic === 'atomoTHD'; });
+    var evidencias = nodos.filter(function(n) { return n.tipoMic === 'hecho' || n.tipoMic === 'testimonio' || n.tipoMic === 'indicio'; });
+    var eslabones = nodos.filter(function(n) { return n.tipoMic === 'eslabon'; });
+
+    var htmlContent = '<h1 style="text-align: center; font-family: Arial;">Informe de Mapa de Investigación Criminal (MIC)</h1>' +
+        '<p><strong>Fecha de exportación:</strong> ' + new Date().toLocaleString('es-MX') + '</p><hr>' +
+        '<h2>1. Conclusión Principal (Probandum)</h2>' +
+        '<p>' + (probandum ? probandum.descripcion : 'No definido') + '</p>' +
+        '<h2>2. Átomos de la Teoría Heptatómica (THD)</h2><ul>' +
+        atomos.map(function(a) { return '<li><strong>' + (a.label || '').replace(/\n/g, ' ') + ':</strong> ' + a.descripcion + '</li>'; }).join('') +
+        '</ul><h2>3. Elementos Probatorios e Indiciarios</h2>' +
+        '<table border="1" cellpadding="5" cellspacing="0" style="border-collapse: collapse; width: 100%; font-family: Arial; font-size: 11pt;">' +
+        '<tr style="background-color: #f2f2f2;"><th>Tipo</th><th>Descripción</th><th>Naturaleza</th></tr>' +
+        evidencias.map(function(e) { return '<tr><td>' + (e.tipoMic || '').toUpperCase() + '</td><td>' + e.descripcion + '</td><td>' + e.naturaleza + '</td></tr>'; }).join('') +
+        '</table><h2>4. Eslabones Perdidos (Riesgos Metodológicos)</h2><ul>' +
+        (eslabones.length > 0 ? eslabones.map(function(e) { return '<li>' + e.descripcion + '</li>'; }).join('') : '<li>No se detectaron eslabones perdidos.</li>') +
+        '</ul><br><p style="font-size: 10pt; color: #666; text-align: center;">Generado automáticamente por CeCoSAI v9.0</p>';
+
+    var blob = new Blob(['\ufeff', '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40"><head><meta charset="utf-8"><title>Informe MIC</title></head><body>' + htmlContent + '</body></html>'], { type: 'application/msword' });
+
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'Informe_MIC_CeCoSAI_' + new Date().toISOString().slice(0,10) + '.doc';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    if (typeof showToast === 'function') showToast('✓ Informe MIC exportado a Word correctamente.', 'success');
+}
+
 window.exportarMICPDF = function () {
-    if (typeof showToast === 'function') showToast('Exportación PDF del MIC pendiente de implementación.', 'info');
+    if (typeof showToast === 'function') showToast('La exportación a PDF ha sido reemplazada por el Informe Word.', 'info');
 };
 console.log("✅ Motor de Valoración MWA Activo y Validado");
 
 window.abrirPanelInferenciaMic = abrirPanelInferenciaMic;
 window.cerrarPanelInferenciaMic = cerrarPanelInferenciaMic;
+window.exportarMICWord = exportarMICWord;
 })();
