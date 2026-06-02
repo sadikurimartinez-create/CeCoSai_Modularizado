@@ -1,3 +1,4 @@
+(function() {
 // =============================================
 // DATOS PARA HIPÓTESIS INICIAL EN NC
 // =============================================
@@ -29,3 +30,4 @@ window.datosHipotesisNC = {
     periodoHechos: 'Marzo 2025 - Enero 2026',
     lugaresHechos: 'Oficinas gubernamentales, Bodega Calle Plomo #105, Av. López Mateos (atentado)'
 };
+})();

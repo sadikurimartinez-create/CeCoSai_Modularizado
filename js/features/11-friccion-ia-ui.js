@@ -1,3 +1,6 @@
+(function() {
+const FriccionIA = window.FriccionIA;
+
 // ============================================
 // MÓDULO: FRICCIÓN LÓGICA IA - UI Y TRAZABILIDAD
 // ============================================
@@ -151,3 +154,4 @@ FriccionIA.exportarTrazabilidad = function() {
 };
 
 document.addEventListener('DOMContentLoaded', function() { setTimeout(() => { if (typeof FriccionIA !== 'undefined' && FriccionIA.actualizarContadores) { FriccionIA.actualizarContadores(); } }, 100); });
+})();

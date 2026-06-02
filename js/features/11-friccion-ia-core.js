@@ -1,3 +1,4 @@
+(function() {
 // ============================================
 // MÓDULO: FRICCIÓN LÓGICA IA - CORE
 // ============================================
@@ -84,3 +85,4 @@ const FriccionIA = {
 };
 
 window.FriccionIA = FriccionIA;
+})();

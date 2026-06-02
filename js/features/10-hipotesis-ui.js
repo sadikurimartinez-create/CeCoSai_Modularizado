@@ -1,3 +1,4 @@
+(function() {
 // =============================================
 // TRAZABILIDAD Y UI DE HIPÓTESIS
 // =============================================
@@ -56,3 +57,4 @@ document.addEventListener('DOMContentLoaded', function() {
 
 window.registrarAccionHipotesis = registrarAccionHipotesis;
 window.verificarBloquesCompletos = verificarBloquesCompletos;
+})();

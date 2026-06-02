@@ -1,3 +1,6 @@
+(function() {
+const FriccionIA = window.FriccionIA;
+
 // ============================================
 // MÓDULO: FRICCIÓN LÓGICA IA - LÓGICA
 // ============================================
@@ -187,3 +190,4 @@ FriccionIA.evaluarRespuestaIA = function(respuesta, actividad) {
     
     return { resultado, analisis, sugerencia, criterios: { pertinencia: tienePertinencia, logica: tieneLogica, respaldo: tieneRespaldo } };
 };
+})();

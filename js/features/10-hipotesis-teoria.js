@@ -1,3 +1,4 @@
+(function() {
 // =============================================
 // FUNCIONES PARA BLOQUES DE HIPÓTESIS (TEORÍA DEL CASO)
 // =============================================
@@ -91,3 +92,4 @@ function generarContenidoJuridicoIA(observaciones) {
 window.validarBloque = validarBloque;
 window.modificarBloque = modificarBloque;
 window.regenerarBloque = regenerarBloque;
+})();
