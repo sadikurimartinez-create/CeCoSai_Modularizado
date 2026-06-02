@@ -1,3 +1,4 @@
+(function() {
 // ============================================
 // CONCIENCIA OPERATIVA SAI - Core y APIs
 // ============================================
@@ -122,3 +123,4 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Referencias globales
 window.ConcienciaOperativaSAI = ConcienciaOperativaSAI;
+})();

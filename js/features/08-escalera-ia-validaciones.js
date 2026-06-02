@@ -1,3 +1,6 @@
+(function() {
+const EscaleraIA = window.EscaleraIA;
+const CodigoPenalAguascalientes = window.CodigoPenalAguascalientes;
 // Funciones de validación para cada elemento
 function validarSugerenciasConducta() { validarSugerenciasYEnviarPIC('conducta'); }
 function ignorarSugerenciasConducta() { ignorarSugerencias('conducta'); }
@@ -339,3 +342,4 @@ window.validarSugerenciasCulpabilidad = validarSugerenciasCulpabilidad;
 window.ignorarSugerenciasCulpabilidad = ignorarSugerenciasCulpabilidad;
 window.validarSugerenciasPunibilidad = validarSugerenciasPunibilidad;
 window.ignorarSugerenciasPunibilidad = ignorarSugerenciasPunibilidad;
+})();

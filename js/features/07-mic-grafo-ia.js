@@ -86,7 +86,6 @@ async function autorizarCarpetaMIC() {
 window.autorizarCarpetaMIC = autorizarCarpetaMIC;
 window.generarMICConIAWigmore = generarMICConIAWigmore;
 window.analizarReglaWigmoreConIA = analizarReglaWigmoreConIA;
-})();
 
 async function generarMICConIAWigmore() {
     // 1) Reconstruir el grafo base con datos del caso
@@ -220,3 +219,4 @@ async function analizarReglaWigmoreConIA(idx) {
         }
     }
 }
+})();

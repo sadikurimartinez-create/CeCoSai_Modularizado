@@ -1,3 +1,4 @@
+(function() {
 // ============================================
 // ANÁLISIS IA (Vigilancia, Consistencia, Hipótesis, Cronología)
 // ============================================
@@ -122,3 +123,4 @@ window.ejecutarVigilanciaJuridica = ejecutarVigilanciaJuridica;
 window.analizarConsistenciaActoresIndicios = analizarConsistenciaActoresIndicios;
 window.desafiarHipotesis = desafiarHipotesis;
 window.extraerCronologiaVectorial = extraerCronologiaVectorial;
+})();

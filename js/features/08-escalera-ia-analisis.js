@@ -1,3 +1,6 @@
+(function() {
+const EscaleraIA = window.EscaleraIA;
+const CodigoPenalAguascalientes = window.CodigoPenalAguascalientes;
 // ANÁLISIS IA POR ELEMENTO
 // ============================================
 
@@ -365,3 +368,9 @@ function ignorarSugerencias(elemento) {
     showToast('Sugerencias ignoradas. Se registró en trazabilidad.', 'info');
 }
 
+window.analizarConductaIA = analizarConductaIA;
+window.analizarTipicidadIA = analizarTipicidadIA;
+window.analizarElementoIA = analizarElementoIA;
+window.validarSugerenciasYEnviarPIC = validarSugerenciasYEnviarPIC;
+window.ignorarSugerencias = ignorarSugerencias;
+})();

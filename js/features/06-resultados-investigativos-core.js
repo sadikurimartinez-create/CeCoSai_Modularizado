@@ -1,3 +1,4 @@
+(function() {
 // ============================================
 // MÓDULO: RESULTADOS INVESTIGATIVOS - CORE
 // ============================================
@@ -78,3 +79,4 @@ function cargarActividadesDesdePIC() {
 document.addEventListener('DOMContentLoaded', function() {
     setTimeout(initResultadosInvestigativos, 500);
 });
+})();

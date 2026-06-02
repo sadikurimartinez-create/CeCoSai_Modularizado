@@ -49,6 +49,9 @@ function safeInitMICNetwork() {
                 height: '600px',
                 apiKey: window.GOOGLE_API_KEY
             });
+                if (typeof actualizarMIC === 'function') {
+                    actualizarMIC();
+                }
         } else {
             MIC_Module.network.redraw();
             MIC_Module.network.fit();
@@ -200,4 +203,3 @@ function actualizarContadoresMIC() {
         console.warn('No se pudo actualizar la lista de biblioteca Wigmore en MIC:', e);
     }
 }
-

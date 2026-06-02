@@ -1,3 +1,4 @@
+(function() {
 // ============================================
 // DATOS PARA NEXO CAUSAL
 // ============================================
@@ -61,3 +62,4 @@ window.actividadesPorCSD = {
       { actividad: 'Entrevista Juan Carlos Ruiz', soporte: 'Testimonio de la víctima sobre atacantes', eval: 'Pendiente estado de salud', aportacion: 15 }
     ]
   };
+})();

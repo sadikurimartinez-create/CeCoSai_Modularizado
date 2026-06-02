@@ -1,3 +1,6 @@
+(function() {
+const EscaleraIA = window.EscaleraIA;
+
 // Inicialización del módulo Escalera IA
 function initEscaleraIA() {
     console.log('🔧 Inicializando módulo Escalera Heptatómica con IA...');
@@ -111,6 +114,15 @@ async function iniciarAnalisisEscalera() {
         escaleraContainer.style.display = 'block';
     }
     
+    // Cargar datos originales para poblar la UI visualmente
+    if (typeof resetEscaleraCompleta === 'function') resetEscaleraCompleta();
+    if (typeof cargarDatosConducta === 'function') cargarDatosConducta();
+    if (typeof cargarDatosTipicidad === 'function') cargarDatosTipicidad();
+    if (typeof cargarDatosAntijuridicidad === 'function') cargarDatosAntijuridicidad();
+    if (typeof cargarDatosImputabilidad === 'function') cargarDatosImputabilidad();
+    if (typeof cargarDatosCulpabilidad === 'function') cargarDatosCulpabilidad();
+    if (typeof cargarDatosPunibilidad === 'function') cargarDatosPunibilidad();
+
     // Habilitar primera fila (Conducta)
     habilitarElemento('conducta');
     
@@ -169,5 +181,9 @@ function ocultarEscalera() {
         punibilidad: { positivo: false, negativo: false, acreditacion: 0, iaResultado: null }
     };
 }
+
+window.iniciarAnalisisEscalera = iniciarAnalisisEscalera;
+window.initEscaleraIA = initEscaleraIA;
+})();
 
 // ============================================

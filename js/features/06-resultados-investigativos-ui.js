@@ -1,3 +1,4 @@
+(function() {
 // ============================================
 // MÓDULO: RESULTADOS INVESTIGATIVOS - UI
 // ============================================
@@ -237,3 +238,4 @@ window.decidirRuido = decidirRuido;
 window.decidirDebil = decidirDebil;
 window.abrirDecisionFiscal = abrirDecisionFiscal;
 window.limpiarFormularioRI = limpiarFormularioRI;
+})();

@@ -1,3 +1,4 @@
+(function() {
 // ============================================
 // MÓDULO: RESULTADOS INVESTIGATIVOS - IA
 // ============================================
@@ -111,3 +112,4 @@ RESPONDE ÚNICAMENTE EN FORMATO JSON (sin markdown):
 }
 
 window.agregarResultadoInvestigativo = agregarResultadoInvestigativo;
+})();

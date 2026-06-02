@@ -1,3 +1,4 @@
+(function() {
 // ==========================================
 // ACTIVACIÓN Y CONTROL DE SEMÁFOROS Y UI
 // ==========================================
@@ -119,3 +120,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 window.toggleDashboardIA = toggleDashboardIA;
 window.actualizarResumenDashboard = actualizarResumenDashboard;
+window.actualizarSemaforos = actualizarSemaforos;
+window.renderPanelAlertasInconsistencia = renderPanelAlertasInconsistencia;
+})();

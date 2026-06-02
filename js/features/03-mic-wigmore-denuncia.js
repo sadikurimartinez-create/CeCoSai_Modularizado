@@ -1,3 +1,4 @@
+(function() {
 // ============================================
 // DENUNCIA BASE (Disparador Maestro)
 // ============================================
@@ -140,3 +141,5 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 window.handleDenunciaBaseFile = handleDenunciaBaseFile;
+window.toggleDenunciaBaseWrap = toggleDenunciaBaseWrap;
+})();
