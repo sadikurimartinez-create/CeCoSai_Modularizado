@@ -1,3 +1,4 @@
+(function() {
 // Function to apply visual style to an edge based on its forceProbatoria
 function applyEdgeStyle(edgeId, forceProbatoria) {
     if (!MIC_Module.edgesDS || !MIC_Module.options) return;
@@ -132,4 +133,7 @@ function validateArgumentHealth() {
     });
 }
 
-
+window.applyEdgeStyle = applyEdgeStyle;
+window.cycleEdgeForceProbatoria = cycleEdgeForceProbatoria;
+window.validateArgumentHealth = validateArgumentHealth;
+})();

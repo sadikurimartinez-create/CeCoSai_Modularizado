@@ -1,11 +1,12 @@
+(function() {
         function cargarDatosAntijuridicidad() {
-            const datosDelito = datosDelitosPorte[delitoSeleccionado];
-            const baseAntijuridicidad = csdSeleccionado.acreditacion.antijuridicidad;
+            const datosDelito = datosDelitosPorte[window.delitoSeleccionado];
+            const baseAntijuridicidad = window.csdSeleccionado.acreditacion.antijuridicidad;
             const acreditacion = (typeof SAIEngine !== 'undefined' && SAIEngine.escalera)
                 ? SAIEngine.escalera.getAcreditacion('antijuridicidad', baseAntijuridicidad)
                 : baseAntijuridicidad;
             
-            document.getElementById('antijuridicidad-delito').textContent = delitoSeleccionado;
+            document.getElementById('antijuridicidad-delito').textContent = window.delitoSeleccionado;
             document.getElementById('antijuridicidad-bien-juridico').textContent = datosDelito ? datosDelito.bienJuridico : 'Pendiente';
             document.getElementById('bien-juridico-tutelado').textContent = datosDelito ? datosDelito.bienJuridico : 'Pendiente';
             
@@ -87,8 +88,8 @@
                 document.getElementById('select-imputabilidad').disabled = false;
                 
                 estadoEscalera.antijuridicidad = 'completado';
-                if (currentCase && currentCase.escalera && currentCase.escalera.estado) {
-                    currentCase.escalera.estado.antijuridicidad = 'completado';
+                if (window.currentCase && window.currentCase.escalera && window.currentCase.escalera.estado) {
+                    window.currentCase.escalera.estado.antijuridicidad = 'completado';
                 }
             } else if (select.value !== '') {
                 // Mostrar actividades de soporte
@@ -106,17 +107,17 @@
         // FUNCIONES DE IMPUTABILIDAD
         // =============================================
         function cargarDatosImputabilidad() {
-            document.getElementById('imputabilidad-sujeto').textContent = csdSeleccionado.sujeto;
-            document.getElementById('imputabilidad-fecha-nac').textContent = csdSeleccionado.fechaNacimiento;
-            document.getElementById('imputabilidad-edad').textContent = `${csdSeleccionado.edadHechos} años`;
+            document.getElementById('imputabilidad-sujeto').textContent = window.csdSeleccionado.sujeto;
+            document.getElementById('imputabilidad-fecha-nac').textContent = window.csdSeleccionado.fechaNacimiento;
+            document.getElementById('imputabilidad-edad').textContent = `${window.csdSeleccionado.edadHechos} años`;
             document.getElementById('imputabilidad-edad').className = 'badge-status badge-success';
             
             // Determinar estado de imputabilidad por edad
-            if (csdSeleccionado.edadHechos >= 18) {
+            if (window.csdSeleccionado.edadHechos >= 18) {
                 document.getElementById('imputabilidad-estado-ia').textContent = 'Mayor de edad - IMPUTABLE';
                 document.getElementById('imputabilidad-estado-ia').className = 'badge-status badge-success';
                 document.getElementById('imputabilidad-resultado-contenido').innerHTML = `
-                    <strong>${csdSeleccionado.sujeto}:</strong> Mayor de edad con plena capacidad de goce y ejercicio. 
+                    <strong>${window.csdSeleccionado.sujeto}:</strong> Mayor de edad con plena capacidad de goce y ejercicio. 
                     <strong>Imputabilidad presumida.</strong>
                 `;
             }
@@ -184,8 +185,8 @@
                 document.getElementById('select-culpabilidad').disabled = false;
                 
                 estadoEscalera.imputabilidad = 'completado';
-                if (currentCase && currentCase.escalera && currentCase.escalera.estado) {
-                    currentCase.escalera.estado.imputabilidad = 'completado';
+                if (window.currentCase && window.currentCase.escalera && window.currentCase.escalera.estado) {
+                    window.currentCase.escalera.estado.imputabilidad = 'completado';
                 }
             } else if (select.value !== '') {
                 document.getElementById('inimputabilidad-actividades').style.display = 'block';
@@ -201,3 +202,14 @@
         // =============================================
         // FUNCIONES DE CULPABILIDAD
         // =============================================
+
+        window.cargarDatosAntijuridicidad = cargarDatosAntijuridicidad;
+        window.mostrarSugerenciasAntijuridicidad = mostrarSugerenciasAntijuridicidad;
+        window.validarSugerenciasAntijuridicidad = validarSugerenciasAntijuridicidad;
+        window.ignorarSugerenciasAntijuridicidad = ignorarSugerenciasAntijuridicidad;
+        window.checkNegativoAntijuridicidad = checkNegativoAntijuridicidad;
+        window.cargarDatosImputabilidad = cargarDatosImputabilidad;
+        window.verificarImputabilidad = verificarImputabilidad;
+        window.bloquearPorEdad = bloquearPorEdad;
+        window.checkNegativoImputabilidad = checkNegativoImputabilidad;
+})();

@@ -1,3 +1,4 @@
+(function() {
 function abrirPanelInferenciaMic(info) {
     var backdrop = document.getElementById('mic-inferencia-backdrop');
     if (!backdrop) return;
@@ -56,8 +57,6 @@ function cerrarPanelInferenciaMic(event) {
     }
 }
 
-window.initMIC = initMIC;
-window.actualizarMIC = actualizarMIC;
 window.descargarMIC = function () {
     if (typeof showToast === 'function') showToast('Descarga PNG del grafo MIC se implementará en una versión siguiente.', 'info');
 };
@@ -65,5 +64,7 @@ window.exportarMICPDF = function () {
     if (typeof showToast === 'function') showToast('Exportación PDF del MIC pendiente de implementación.', 'info');
 };
 console.log("✅ Motor de Valoración MWA Activo y Validado");
-window.autorizarCarpetaMIC = autorizarCarpetaMIC;
-window.generarMICConIAWigmore = generarMICConIAWigmore;
+
+window.abrirPanelInferenciaMic = abrirPanelInferenciaMic;
+window.cerrarPanelInferenciaMic = cerrarPanelInferenciaMic;
+})();

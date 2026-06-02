@@ -1,3 +1,4 @@
+(function() {
         function actualizarAcreditacionElemento(elemento, porcentaje) {
             const progressBar = document.getElementById(`${elemento}-progress-bar`);
             const acreditacionSpan = document.getElementById(`${elemento}-acreditacion`) || document.getElementById(`${elemento}-acreditacion-global`);
@@ -144,10 +145,10 @@
         }
 
         function resetEscalera() {
-            currentStep = 0;
+            window.currentStep = 0;
             
             // Resetear todos los rows
-            elementos.forEach((elem, index) => {
+            window.elementos.forEach((elem, index) => {
                 const row = document.getElementById('row-' + elem);
                 row.classList.remove('active-row', 'completed-row');
                 if (index > 0) row.classList.add('disabled-row');
@@ -197,7 +198,7 @@
         }
 
         function checkNegative(step) {
-            const elemName = elementos[step - 1];
+            const elemName = window.elementos[step - 1];
             const select = document.getElementById('select-' + elemName);
             const status = document.getElementById(elemName + '-status');
             const row = document.getElementById('row-' + elemName);
@@ -210,8 +211,8 @@
                 row.classList.add('completed-row');
 
                 // Habilitar siguiente elemento
-                if (step < elementos.length) {
-                    const nextElem = elementos[step];
+                if (step < window.elementos.length) {
+                    const nextElem = window.elementos[step];
                     const nextRow = document.getElementById('row-' + nextElem);
                     const nextSelect = document.getElementById('select-' + nextElem);
                     
@@ -227,7 +228,7 @@
                         document.querySelectorAll('input[name="culpabilidad-forma"]').forEach(r => r.disabled = false);
                     }
                     
-                    currentStep = step;
+                    window.currentStep = step;
                 } else {
                     // Último paso completado - mostrar resultado final
                     document.getElementById('resultado-final').style.display = 'block';
@@ -248,8 +249,8 @@
                 document.getElementById('bloqueo-excluyente').scrollIntoView({ behavior: 'smooth' });
                 
                 // Deshabilitar elementos siguientes
-                for (let i = step; i < elementos.length; i++) {
-                    const futureRow = document.getElementById('row-' + elementos[i]);
+                for (let i = step; i < window.elementos.length; i++) {
+                    const futureRow = document.getElementById('row-' + window.elementos[i]);
                     futureRow.classList.add('disabled-row');
                     futureRow.classList.remove('active-row');
                 }
@@ -260,49 +261,11 @@
         // =============================================
 
 // Funciones publicas usadas por la interfaz.
-Object.assign(window, {
-    initEscalera,
-    seleccionarCSDEscalera,
-    poblarSelectorDelitos,
-    seleccionarDelitoEscalera,
-    iniciarAnalisisEscalera,
-    actualizarPanelInfoCSD,
-    cargarDatosConducta,
-    validateConducta,
-    mostrarSugerenciasConducta,
-    validarSugerenciasConducta,
-    ignorarSugerenciasConducta,
-    checkNegativoConducta,
-    cargarDatosTipicidad,
-    mostrarSugerenciasTipicidad,
-    validarSugerenciasTipicidad,
-    ignorarSugerenciasTipicidad,
-    checkNegativoTipicidad,
-    cargarDatosAntijuridicidad,
-    mostrarSugerenciasAntijuridicidad,
-    validarSugerenciasAntijuridicidad,
-    ignorarSugerenciasAntijuridicidad,
-    checkNegativoAntijuridicidad,
-    cargarDatosImputabilidad,
-    verificarImputabilidad,
-    bloquearPorEdad,
-    checkNegativoImputabilidad,
-    cargarDatosCulpabilidad,
-    seleccionarFormaCulpabilidad,
-    mostrarSugerenciasCulpabilidad,
-    validarSugerenciasCulpabilidad,
-    ignorarSugerenciasCulpabilidad,
-    checkNegativoCulpabilidad,
-    cargarDatosPunibilidad,
-    mostrarSugerenciasPunibilidad,
-    validarSugerenciasPunibilidad,
-    ignorarSugerenciasPunibilidad,
-    checkNegativoPunibilidad,
-    actualizarAcreditacionElemento,
-    bloquearEscalera,
-    resetEscaleraCompleta,
-    cargarDatosCSDEnEscalera,
-    resetEscalera,
-    validateStep,
-    checkNegative
-});
+window.actualizarAcreditacionElemento = actualizarAcreditacionElemento;
+window.bloquearEscalera = bloquearEscalera;
+window.resetEscaleraCompleta = resetEscaleraCompleta;
+window.cargarDatosCSDEnEscalera = cargarDatosCSDEnEscalera;
+window.resetEscalera = resetEscalera;
+window.validateStep = validateStep;
+window.checkNegative = checkNegative;
+})();

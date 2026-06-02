@@ -1,11 +1,12 @@
+(function() {
         function cargarDatosCulpabilidad() {
-            const datosDelito = datosDelitosPorte[delitoSeleccionado];
-            const baseCulpabilidad = csdSeleccionado.acreditacion.culpabilidad;
+            const datosDelito = datosDelitosPorte[window.delitoSeleccionado];
+            const baseCulpabilidad = window.csdSeleccionado.acreditacion.culpabilidad;
             const acreditacion = (typeof SAIEngine !== 'undefined' && SAIEngine.escalera)
                 ? SAIEngine.escalera.getAcreditacion('culpabilidad', baseCulpabilidad)
                 : baseCulpabilidad;
             
-            document.getElementById('culpabilidad-delito').textContent = delitoSeleccionado;
+            document.getElementById('culpabilidad-delito').textContent = window.delitoSeleccionado;
             
             if (datosDelito) {
                 const formaCulp = datosDelito.culpabilidad.tipo === 'Doloso' ? 'DOLO DIRECTO' : 'CULPA';
@@ -109,8 +110,8 @@
                 document.getElementById('select-punibilidad').disabled = false;
                 
                 estadoEscalera.culpabilidad = 'completado';
-                if (currentCase && currentCase.escalera && currentCase.escalera.estado) {
-                    currentCase.escalera.estado.culpabilidad = 'completado';
+                if (window.currentCase && window.currentCase.escalera && window.currentCase.escalera.estado) {
+                    window.currentCase.escalera.estado.punibilidad = 'completado';
                 }
             } else if (select.value !== '') {
                 document.getElementById('inculpabilidad-actividades').style.display = 'block';
@@ -126,13 +127,13 @@
         // FUNCIONES DE PUNIBILIDAD
         // =============================================
         function cargarDatosPunibilidad() {
-            const datosDelito = datosDelitosPorte[delitoSeleccionado];
-            const basePunibilidad = csdSeleccionado.acreditacion.punibilidad;
+            const datosDelito = datosDelitosPorte[window.delitoSeleccionado];
+            const basePunibilidad = window.csdSeleccionado.acreditacion.punibilidad;
             const acreditacion = (typeof SAIEngine !== 'undefined' && SAIEngine.escalera)
                 ? SAIEngine.escalera.getAcreditacion('punibilidad', basePunibilidad)
                 : basePunibilidad;
             
-            document.getElementById('punibilidad-delito').textContent = `${delitoSeleccionado} (${datosDelito ? datosDelito.articulo : 'S/A'})`;
+            document.getElementById('punibilidad-delito').textContent = `${window.delitoSeleccionado} (${datosDelito ? datosDelito.articulo : 'S/A'})`;
             
             if (datosDelito) {
                 // Calcular pena sugerida (tercio superior para autor intelectual)
@@ -250,3 +251,16 @@
         // =============================================
         // FUNCIONES AUXILIARES
         // =============================================
+
+        window.cargarDatosCulpabilidad = cargarDatosCulpabilidad;
+        window.seleccionarFormaCulpabilidad = seleccionarFormaCulpabilidad;
+        window.mostrarSugerenciasCulpabilidad = mostrarSugerenciasCulpabilidad;
+        window.validarSugerenciasCulpabilidad = validarSugerenciasCulpabilidad;
+        window.ignorarSugerenciasCulpabilidad = ignorarSugerenciasCulpabilidad;
+        window.checkNegativoCulpabilidad = checkNegativoCulpabilidad;
+        window.cargarDatosPunibilidad = cargarDatosPunibilidad;
+        window.mostrarSugerenciasPunibilidad = mostrarSugerenciasPunibilidad;
+        window.validarSugerenciasPunibilidad = validarSugerenciasPunibilidad;
+        window.ignorarSugerenciasPunibilidad = ignorarSugerenciasPunibilidad;
+        window.checkNegativoPunibilidad = checkNegativoPunibilidad;
+})();

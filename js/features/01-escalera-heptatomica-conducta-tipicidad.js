@@ -1,11 +1,12 @@
+(function() {
         function cargarDatosConducta() {
-            const datosDelito = datosDelitosPorte[delitoSeleccionado];
-            const base = csdSeleccionado.acreditacion.conducta;
+            const datosDelito = datosDelitosPorte[window.delitoSeleccionado];
+            const base = window.csdSeleccionado.acreditacion.conducta;
             const acreditacion = (typeof SAIEngine !== 'undefined' && SAIEngine.escalera)
                 ? SAIEngine.escalera.getAcreditacion('conducta', base)
                 : base;
             
-            document.getElementById('conducta-delito-actual').textContent = delitoSeleccionado;
+            document.getElementById('conducta-delito-actual').textContent = window.delitoSeleccionado;
             document.getElementById('conducta-tipo-ia').textContent = datosDelito ? datosDelito.culpabilidad.tipo : 'Pendiente';
             document.getElementById('conducta-tipo-ia').className = 'badge-status badge-info';
             
@@ -71,7 +72,7 @@
                 const nuevoPct = SAIEngine.escalera.aplicarDelta('conducta', delta);
                 actualizarAcreditacionElemento('conducta', nuevoPct);
             } else {
-                actualizarAcreditacionElemento('conducta', csdSeleccionado.acreditacion.conducta + (checkboxes.length * 10));
+                actualizarAcreditacionElemento('conducta', window.csdSeleccionado.acreditacion.conducta + (checkboxes.length * 10));
             }
             
             showToast(`${checkboxes.length} actividad(es) agregada(s) al PIC`, 'success');
@@ -105,8 +106,8 @@
                 document.getElementById('select-tipicidad').disabled = false;
                 
                 estadoEscalera.conducta = 'completado';
-                if (currentCase && currentCase.escalera && currentCase.escalera.estado) {
-                    currentCase.escalera.estado.conducta = 'completado';
+                if (window.currentCase && window.currentCase.escalera && window.currentCase.escalera.estado) {
+                    window.currentCase.escalera.estado.conducta = 'completado';
                 }
             } else if (select.value !== '') {
                 bloquearEscalera('conducta', select.value);
@@ -117,14 +118,14 @@
         // FUNCIONES DE TIPICIDAD (Clasificación Porte Petit)
         // =============================================
         function cargarDatosTipicidad() {
-            const datosDelito = datosDelitosPorte[delitoSeleccionado];
-            const baseTipicidad = csdSeleccionado.acreditacion.tipicidad;
+            const datosDelito = datosDelitosPorte[window.delitoSeleccionado];
+            const baseTipicidad = window.csdSeleccionado.acreditacion.tipicidad;
             const acreditacion = (typeof SAIEngine !== 'undefined' && SAIEngine.escalera)
                 ? SAIEngine.escalera.getAcreditacion('tipicidad', baseTipicidad)
                 : baseTipicidad;
             
-            document.getElementById('tipicidad-delito').textContent = delitoSeleccionado;
-            document.getElementById('tipicidad-delito-articulo').textContent = `${delitoSeleccionado} (${datosDelito ? datosDelito.articulo : 'S/A'})`;
+            document.getElementById('tipicidad-delito').textContent = window.delitoSeleccionado;
+            document.getElementById('tipicidad-delito-articulo').textContent = `${window.delitoSeleccionado} (${datosDelito ? datosDelito.articulo : 'S/A'})`;
             
             if (datosDelito) {
                 // Clasificación Porte Petit
@@ -255,8 +256,8 @@
                 document.getElementById('select-antijuridicidad').disabled = false;
                 
                 estadoEscalera.tipicidad = 'completado';
-                if (currentCase && currentCase.escalera && currentCase.escalera.estado) {
-                    currentCase.escalera.estado.tipicidad = 'completado';
+                if (window.currentCase && window.currentCase.escalera && window.currentCase.escalera.estado) {
+                    window.currentCase.escalera.estado.tipicidad = 'completado';
                 }
             } else if (select.value !== '') {
                 bloquearEscalera('tipicidad', select.value);
@@ -266,3 +267,16 @@
         // =============================================
         // FUNCIONES DE ANTIJURIDICIDAD
         // =============================================
+
+        window.cargarDatosConducta = cargarDatosConducta;
+        window.validateConducta = validateConducta;
+        window.mostrarSugerenciasConducta = mostrarSugerenciasConducta;
+        window.validarSugerenciasConducta = validarSugerenciasConducta;
+        window.ignorarSugerenciasConducta = ignorarSugerenciasConducta;
+        window.checkNegativoConducta = checkNegativoConducta;
+        window.cargarDatosTipicidad = cargarDatosTipicidad;
+        window.mostrarSugerenciasTipicidad = mostrarSugerenciasTipicidad;
+        window.validarSugerenciasTipicidad = validarSugerenciasTipicidad;
+        window.ignorarSugerenciasTipicidad = ignorarSugerenciasTipicidad;
+        window.checkNegativoTipicidad = checkNegativoTipicidad;
+})();

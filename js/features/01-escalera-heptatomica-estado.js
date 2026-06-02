@@ -1,13 +1,14 @@
+(function() {
 // =============================================
 // ESCALERA HEPTATÓMICA - Estado Global y Motor
 // =============================================
 
-const elementos = ['conducta', 'tipicidad', 'antijuridicidad', 'imputabilidad', 'culpabilidad', 'punibilidad'];
-let currentStep = 0;
+window.elementos = ['conducta', 'tipicidad', 'antijuridicidad', 'imputabilidad', 'culpabilidad', 'punibilidad'];
+window.currentStep = 0;
 
-var csdSeleccionado = null;
-var delitoSeleccionado = null;
-var estadoEscalera = {
+window.csdSeleccionado = null;
+window.delitoSeleccionado = null;
+window.estadoEscalera = {
     conducta: 'pendiente',
     tipicidad: 'pendiente',
     antijuridicidad: 'pendiente',
@@ -17,7 +18,7 @@ var estadoEscalera = {
 };
 
 // Núcleo lógico ligero para la Escalera Heptatómica (sin afectar la UI existente)
-const SAIEngine = {
+window.SAIEngine = {
     escalera: {
         casoId: null,
         csdId: null,
@@ -114,14 +115,7 @@ function initEscalera() {
 }
 
 // Caso SAI en memoria (estructura base para integrar módulos)
-let currentCase = { id: null, carpeta: null, csdId: null, delito: null, escalera: { estado: { conducta: 'pendiente', tipicidad: 'pendiente', antijuridicidad: 'pendiente', imputabilidad: 'pendiente', culpabilidad: 'pendiente', punibilidad: 'pendiente' }, acreditacion: { conducta: null, tipicidad: null, antijuridicidad: null, imputabilidad: null, culpabilidad: null, punibilidad: null } }, matrizIntegracion: { filasTotales: 0, filasValidadas: 0, filasRuido: 0, ultimaActualizacion: null }, mic: { nodos: 0, conexiones: 0, acreditacionGlobal: null, ultimaActualizacion: null }, mmi: { preguntasGeneradas: 0, preguntasRespondidas: 0, preguntasSinContestar: 0, ultimaActualizacion: null } };
+window.currentCase = { id: null, carpeta: null, csdId: null, delito: null, escalera: { estado: { conducta: 'pendiente', tipicidad: 'pendiente', antijuridicidad: 'pendiente', imputabilidad: 'pendiente', culpabilidad: 'pendiente', punibilidad: 'pendiente' }, acreditacion: { conducta: null, tipicidad: null, antijuridicidad: null, imputabilidad: null, culpabilidad: null, punibilidad: null } }, matrizIntegracion: { filasTotales: 0, filasValidadas: 0, filasRuido: 0, ultimaActualizacion: null }, mic: { nodos: 0, conexiones: 0, acreditacionGlobal: null, ultimaActualizacion: null }, mmi: { preguntasGeneradas: 0, preguntasRespondidas: 0, preguntasSinContestar: 0, ultimaActualizacion: null } };
 
-// Referencias globales para integracion entre archivos.
-window.elementos = elementos;
-window.currentStep = currentStep;
-window.SAIEngine = SAIEngine;
-window.currentCase = currentCase;
 window.initEscalera = initEscalera;
-window.csdSeleccionado = csdSeleccionado;
-window.delitoSeleccionado = delitoSeleccionado;
-window.estadoEscalera = estadoEscalera;
+})();

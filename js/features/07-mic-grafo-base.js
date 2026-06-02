@@ -1,3 +1,4 @@
+(function() {
 const MIC_Module = {
     ultimaActualizacion: null,
     nodesDS: null,
@@ -203,3 +204,11 @@ function actualizarContadoresMIC() {
         console.warn('No se pudo actualizar la lista de biblioteca Wigmore en MIC:', e);
     }
 }
+
+window.initMIC = initMIC;
+window.cargarDatosParaMIC = cargarDatosParaMIC;
+window.safeInitMICNetwork = safeInitMICNetwork;
+window.initMICNetwork = initMICNetwork;
+window.actualizarFechaHoraMIC = actualizarFechaHoraMIC;
+window.actualizarContadoresMIC = actualizarContadoresMIC;
+})();

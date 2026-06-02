@@ -1,3 +1,4 @@
+(function() {
         // FUNCIONES DE SELECCIÓN CSD Y DELITO
         // =============================================
         function seleccionarCSDEscalera() {
@@ -13,21 +14,20 @@
                 return;
             }
 
-            csdSeleccionado = datosCSDCompletos[selector.value];
-            window.csdSeleccionado = csdSeleccionado;
+            window.csdSeleccionado = datosCSDCompletos[selector.value];
             // Actualizar Caso SAI en memoria
-            currentCase.id = currentCase.id || ('CASO-' + selector.value);
-            currentCase.csdId = csdSeleccionado.id;
+            window.currentCase.id = window.currentCase.id || ('CASO-' + selector.value);
+            window.currentCase.csdId = window.csdSeleccionado.id;
             
             // Verificar si tiene múltiples delitos
-            if (csdSeleccionado.delitos.length > 1) {
+            if (window.csdSeleccionado.delitos.length > 1) {
                 selectorDelito.style.display = 'block';
-                poblarSelectorDelitos(csdSeleccionado.delitos);
+                poblarSelectorDelitos(window.csdSeleccionado.delitos);
                 panelInfo.style.display = 'none';
                 container.style.display = 'none';
             } else {
                 selectorDelito.style.display = 'none';
-                delitoSeleccionado = csdSeleccionado.delitos[0];
+                window.delitoSeleccionado = window.csdSeleccionado.delitos[0];
                 iniciarAnalisisEscalera();
             }
         }
@@ -50,9 +50,8 @@
             
             if (!selectorDelito.value) return;
             
-            delitoSeleccionado = selectorDelito.value;
-            window.delitoSeleccionado = delitoSeleccionado;
-            currentCase.delito = delitoSeleccionado;
+            window.delitoSeleccionado = selectorDelito.value;
+            window.currentCase.delito = window.delitoSeleccionado;
             iniciarAnalisisEscalera();
         }
 
@@ -63,16 +62,16 @@
             // Inicializar núcleo lógico de Escalera para este CSD/delito
             if (typeof SAIEngine !== 'undefined' && SAIEngine.escalera) {
                 SAIEngine.escalera.init(
-                    currentCase.id || null,
-                    csdSeleccionado && csdSeleccionado.id ? csdSeleccionado.id : null,
-                    delitoSeleccionado || null,
-                    csdSeleccionado && csdSeleccionado.acreditacion ? csdSeleccionado.acreditacion : null
+                    window.currentCase.id || null,
+                    window.csdSeleccionado && window.csdSeleccionado.id ? window.csdSeleccionado.id : null,
+                    window.delitoSeleccionado || null,
+                    window.csdSeleccionado && window.csdSeleccionado.acreditacion ? window.csdSeleccionado.acreditacion : null
                 );
                 // Sincronizar acreditación en currentCase
-                if (currentCase.escalera && currentCase.escalera.acreditacion) {
-                    currentCase.escalera.acreditacion = {
-                        ...currentCase.escalera.acreditacion,
-                        ...csdSeleccionado.acreditacion
+                if (window.currentCase.escalera && window.currentCase.escalera.acreditacion) {
+                    window.currentCase.escalera.acreditacion = {
+                        ...window.currentCase.escalera.acreditacion,
+                        ...window.csdSeleccionado.acreditacion
                     };
                 }
             }
@@ -100,23 +99,30 @@
 
         function actualizarPanelInfoCSD() {
             const contenido = document.getElementById('info-csd-escalera-content');
-            const datosDelito = datosDelitosPorte[delitoSeleccionado];
+            const datosDelito = datosDelitosPorte[window.delitoSeleccionado];
             
             contenido.innerHTML = `
                 <div class="grid-2" style="gap: 16px;">
                     <div>
-                        <p><strong><i class="fas fa-user"></i> Sujeto Activo:</strong> ${csdSeleccionado.sujeto}</p>
-                        <p style="margin-top: 6px;"><strong><i class="fas fa-gavel"></i> Delito:</strong> ${delitoSeleccionado} (${datosDelito ? datosDelito.articulo : 'S/A'})</p>
-                        <p style="margin-top: 6px;"><strong><i class="fas fa-users"></i> Grado de Participación:</strong> ${csdSeleccionado.grado}</p>
+                        <p><strong><i class="fas fa-user"></i> Sujeto Activo:</strong> ${window.csdSeleccionado.sujeto}</p>
+                        <p style="margin-top: 6px;"><strong><i class="fas fa-gavel"></i> Delito:</strong> ${window.delitoSeleccionado} (${datosDelito ? datosDelito.articulo : 'S/A'})</p>
+                        <p style="margin-top: 6px;"><strong><i class="fas fa-users"></i> Grado de Participación:</strong> ${window.csdSeleccionado.grado}</p>
                     </div>
                     <div>
-                        <p><strong><i class="fas fa-calendar"></i> Fecha de Nacimiento:</strong> ${csdSeleccionado.fechaNacimiento}</p>
-                        <p style="margin-top: 6px;"><strong><i class="fas fa-clock"></i> Edad al Momento de los Hechos:</strong> ${csdSeleccionado.edadHechos} años</p>
+                        <p><strong><i class="fas fa-calendar"></i> Fecha de Nacimiento:</strong> ${window.csdSeleccionado.fechaNacimiento}</p>
+                        <p style="margin-top: 6px;"><strong><i class="fas fa-clock"></i> Edad al Momento de los Hechos:</strong> ${window.csdSeleccionado.edadHechos} años</p>
                         <p style="margin-top: 6px;"><strong><i class="fas fa-balance-scale"></i> Bien Jurídico:</strong> ${datosDelito ? datosDelito.bienJuridico : 'Pendiente'}</p>
                     </div>
                 </div>
             `;
         }
+
+        window.seleccionarCSDEscalera = seleccionarCSDEscalera;
+        window.seleccionarDelitoEscalera = seleccionarDelitoEscalera;
+        window.iniciarAnalisisEscalera = iniciarAnalisisEscalera;
+        window.actualizarPanelInfoCSD = actualizarPanelInfoCSD;
+        window.poblarSelectorDelitos = poblarSelectorDelitos;
+})();
 
         // =============================================
         // FUNCIONES DE CONDUCTA

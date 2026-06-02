@@ -1,3 +1,4 @@
+(function() {
 function actualizarMIC() {
     console.log('🔄 Actualizando MIC (grafo)…');
     cargarDatosParaMIC();
@@ -235,3 +236,7 @@ function calcularAcreditacionGlobal() {
     }
 }
 
+window.actualizarMIC = actualizarMIC;
+window.construirMICDesdeDatos = construirMICDesdeDatos;
+window.calcularAcreditacionGlobal = calcularAcreditacionGlobal;
+})();
