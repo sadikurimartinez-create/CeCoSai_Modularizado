@@ -1,5 +1,4 @@
         // =============================================
-
         // Guardar Sujeto (función original)
         function guardarSujeto() {
             closeModal('modal-agregar-sujeto');

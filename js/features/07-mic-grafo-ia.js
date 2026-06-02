@@ -1,3 +1,4 @@
+(function() {
 async function autorizarCarpetaMIC() {
     if (!window.showDirectoryPicker) {
         if (typeof showToast === 'function') {
@@ -81,6 +82,11 @@ async function autorizarCarpetaMIC() {
         }
     }
 }
+
+window.autorizarCarpetaMIC = autorizarCarpetaMIC;
+window.generarMICConIAWigmore = generarMICConIAWigmore;
+window.analizarReglaWigmoreConIA = analizarReglaWigmoreConIA;
+})();
 
 async function generarMICConIAWigmore() {
     // 1) Reconstruir el grafo base con datos del caso
