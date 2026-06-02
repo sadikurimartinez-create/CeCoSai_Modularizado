@@ -1,0 +1,500 @@
+            padding: 16px;
+            border-top: 1px solid var(--border-color);
+            background: #fff;
+        }
+
+        .expandable-body.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        /* Dashboard de Inteligencia Activa (Conciencia Operativa SAI) */
+        .dashboard-ia-wrap { margin-bottom: 16px; }
+        .dashboard-ia-header { padding: 10px 16px; background: linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%); color: #e2e8f0; border-radius: 8px 8px 0 0; cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-weight: 600; font-size: 0.85rem; border: 1px solid rgba(56,189,248,0.3); }
+        .dashboard-ia-header:hover { background: linear-gradient(135deg, #2563eb 0%, #1e3a5f 100%); }
+        .dashboard-ia-header i.chevron { transition: transform 0.25s; }
+        .dashboard-ia-header.active i.chevron { transform: rotate(180deg); }
+        .dashboard-ia-body { display: none; padding: 16px; background: #f8fafc; border: 1px solid var(--border-color); border-top: none; border-radius: 0 0 8px 8px; }
+        .dashboard-ia-body.show { display: block; }
+        .alerta-jurisprudencia { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-left: 4px solid #f59e0b; padding: 12px 14px; border-radius: 8px; margin-bottom: 12px; }
+        .alerta-jurisprudencia h4 { font-size: 0.9rem; margin-bottom: 8px; color: #92400e; }
+        .alerta-jurisprudencia ul { margin: 0; padding-left: 18px; font-size: 0.8rem; color: #78350f; }
+        .hallazgos-dictamenes { background: #fff; border: 1px solid var(--border-color); border-radius: 8px; padding: 12px; margin-top: 12px; max-height: 200px; overflow-y: auto; }
+        .hallazgos-dictamenes h4 { font-size: 0.85rem; margin-bottom: 8px; color: var(--primary-blue); }
+        .hallazgo-item { font-size: 0.78rem; color: var(--text-secondary); padding: 6px 0; border-bottom: 1px solid #e2e8f0; }
+        .hallazgo-item:last-child { border-bottom: none; }
+        .btn-analizar-dictamen { display: inline-flex; align-items: center; gap: 8px; }
+
+        /* Semáforo SAI (THD - robustez del caso) */
+        .semaforo-sai-wrap { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+        .semaforo-sai-label { font-size: 0.8rem; font-weight: 600; color: var(--text-primary); }
+        .semaforo-sai { display: flex; gap: 8px; }
+        .semaforo-sai .luz { width: 14px; height: 14px; border-radius: 50%; background: #94a3b8; opacity: 0.4; transition: opacity 0.2s, box-shadow 0.2s; }
+        .semaforo-sai .luz.verde { background: #22c55e; }
+        .semaforo-sai .luz.amarillo { background: #eab308; }
+        .semaforo-sai .luz.rojo { background: #ef4444; }
+        .semaforo-sai .luz.activo { opacity: 1; box-shadow: 0 0 8px currentColor; }
+        .dashboard-resumen { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin-bottom: 12px; font-size: 0.78rem; }
+        .dashboard-resumen-item { background: #fff; border: 1px solid var(--border-color); border-radius: 6px; padding: 8px 10px; }
+        .dashboard-resumen-item strong { display: block; color: var(--primary-blue); margin-bottom: 4px; }
+        .alerta-inconsistencia { background: #fef2f2; border-left: 4px solid #ef4444; padding: 10px 12px; border-radius: 6px; margin-bottom: 8px; font-size: 0.8rem; color: #991b1b; }
+        .cronologia-vectorial { list-style: none; padding-left: 0; margin: 0; border-left: 3px solid var(--accent-blue); padding-left: 14px; }
+        .cronologia-vectorial li { padding: 6px 0; font-size: 0.8rem; color: var(--text-primary); border-bottom: 1px solid #e2e8f0; }
+        .cronologia-vectorial li:last-child { border-bottom: none; }
+        .cronologia-vectorial .fecha { font-weight: 600; color: var(--primary-blue); margin-right: 8px; }
+        .hipotesis-alternativas { background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 8px; padding: 12px; margin-top: 8px; font-size: 0.8rem; }
+
+        /* Denuncia Base (Disparador Maestro) – visible solo si recepción "Por Escrito" */
+        .denuncia-base-wrap { overflow: hidden; opacity: 0; max-height: 0; transition: opacity 0.35s ease, max-height 0.35s ease; margin-top: 0; }
+        .denuncia-base-wrap.visible { opacity: 1; max-height: 500px; margin-top: 14px; }
+        .denuncia-base-card { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); border: 1px solid rgba(0, 255, 255, 0.25); border-radius: 10px; padding: 16px 18px; }
+        .denuncia-base-msg { font-size: 0.8rem; color: #94a3b8; margin-bottom: 12px; line-height: 1.5; }
+        .denuncia-base-msg strong { color: #e2e8f0; }
+        .denuncia-base-input-wrap { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .celula-activa-indicator { display: none; align-items: center; gap: 8px; padding: 10px 14px; background: rgba(34, 197, 94, 0.12); border: 1px solid rgba(34, 197, 94, 0.4); border-radius: 8px; font-size: 0.8rem; color: #22c55e; margin-top: 12px; }
+        .celula-activa-indicator.activo { display: flex; }
+        .celula-activa-indicator i.fa-sync { animation: spin 1s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Toast Notifications */
+        .toast-container {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 10000;
+        }
+
+        .toast {
+            background: var(--primary-dark);
+            color: #fff;
+            padding: 14px 20px;
+            border-radius: 8px;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            animation: slideIn 0.3s ease;
+            font-size: 0.85rem;
+        }
+
+        .toast.success { background: var(--success); }
+        .toast.warning { background: var(--warning); }
+        .toast.error { background: var(--danger); }
+
+        @keyframes slideIn {
+            from { transform: translateX(100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* Action Button Styles */
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        .btn.loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .btn.loading::after {
+            content: '';
+            width: 14px;
+            height: 14px;
+            border: 2px solid #fff;
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-left: 8px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* ============================================
+           ESTILOS FRICCIÓN LÓGICA MEJORADA
+           ============================================ */
+        .friccion-pregunta-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 16px;
+            margin-bottom: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .friccion-pregunta-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        
+        .friccion-pregunta-card[data-estado="validada"] {
+            border-left: 4px solid var(--success);
+            background: linear-gradient(135deg, #f0fdf4 0%, #fff 100%);
+        }
+        
+        .friccion-pregunta-card[data-estado="rechazada"] {
+            border-left: 4px solid var(--danger);
+            background: linear-gradient(135deg, #fef2f2 0%, #fff 100%);
+        }
+        
+        .friccion-pregunta-card[data-estado="sin-contestar"] {
+            border-left: 4px solid var(--warning);
+            background: linear-gradient(135deg, #fffbeb 0%, #fff 100%);
+            opacity: 0.7;
+        }
+        
+        .friccion-pregunta-card[data-estado="pendiente"] {
+            border-left: 4px solid var(--accent-blue);
+        }
+        
+        .pregunta-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        
+        .pregunta-numero {
+            font-family: 'Monaco', monospace;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+            background: #eff6ff;
+            padding: 4px 10px;
+            border-radius: 4px;
+        }
+        
+        .pregunta-texto {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            margin-bottom: 16px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .pregunta-texto i {
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+        
+        .pregunta-respuesta-container {
+            background: #f8fafc;
+            padding: 16px;
+            border-radius: 8px;
+            margin-top: 12px;
+        }
+        
+        .respuesta-fiscal {
+            min-height: 80px;
+            resize: vertical;
+        }
+        
+        .actividad-probatoria-selector {
+            margin-top: 12px;
+        }
+        
+        .evaluacion-ia-container {
+            margin-top: 16px;
+            padding: 16px;
+            border-radius: 8px;
+        }
+        
+        .evaluacion-ia-container.validada {
+            background: linear-gradient(135deg, #dcfce7 0%, #f0fdf4 100%);
+            border: 1px solid #86efac;
+        }
+        
+        .evaluacion-ia-container.rechazada {
+            background: linear-gradient(135deg, #fee2e2 0%, #fef2f2 100%);
+            border: 1px solid #fca5a5;
+        }
+        
+        .evaluacion-ia-container.parcial {
+            background: linear-gradient(135deg, #fef3c7 0%, #fffbeb 100%);
+            border: 1px solid #fcd34d;
+        }
+        
+        .evaluacion-resultado {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .evaluacion-detalle {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        .evaluacion-criterios {
+            display: flex;
+            gap: 12px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+        
+        .criterio-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        
+        .criterio-badge.cumple {
+            background: #dcfce7;
+            color: #166534;
+        }
+        
+        .criterio-badge.no-cumple {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+        
+        .criterio-badge.parcial {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        
+        /* ============================================
+           MEJORA: Estilos de Paginación
+           ============================================ */
+        .pagination-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            margin-top: 12px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .pagination-info {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+        
+        .pagination-controls {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+        }
+        
+        .pagination-btn {
+            padding: 6px 12px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-card);
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            transition: var(--transition-fast);
+        }
+        
+        .pagination-btn:hover:not(:disabled) {
+            background: var(--bg-content);
+            border-color: var(--accent-blue);
+        }
+        
+        .pagination-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .pagination-btn.active {
+            background: var(--accent-blue);
+            color: white;
+            border-color: var(--accent-blue);
+        }
+        
+        .page-size-select {
+            padding: 4px 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 0.75rem;
+            margin-left: 8px;
+        }
+        
+        /* ============================================
+           MEJORA: Indicador de guardado automático
+           ============================================ */
+        .autosave-indicator {
+            position: fixed;
+            bottom: 80px;
+            right: 24px;
+            background: var(--success);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transition-normal);
+            z-index: 9998;
+        }
+        
+        .autosave-indicator.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* ============================================
+           MEJORA: Skeleton loading para lazy load
+           ============================================ */
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: skeleton-loading 1.5s infinite;
+            border-radius: 4px;
+        }
+        
+        @keyframes skeleton-loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        
+        /* ============================================
+           MEJORA: PWA Install Button
+           ============================================ */
+        .pwa-install-btn {
+            display: none;
+            position: fixed;
+            bottom: 140px;
+            right: 24px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--hover-blue));
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.8rem;
+            box-shadow: var(--shadow-lg);
+            z-index: 9997;
+            transition: var(--transition-normal);
+        }
+        
+        .pwa-install-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .pwa-install-btn.show {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* ============================================
+           MEJORA: Tooltips accesibles
+           ============================================ */
+        [data-tooltip] {
+            position: relative;
+        }
+        
+        [data-tooltip]::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary-dark);
+            color: white;
+            padding: 6px 10px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition-fast);
+            z-index: 1000;
+        }
+        
+        [data-tooltip]:hover::after,
+        [data-tooltip]:focus::after {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* ============================================
+           MEJORA: Skip link para accesibilidad
+           ============================================ */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--accent-blue);
+            color: white;
+            padding: 8px 16px;
+            z-index: 10001;
+            transition: top 0.3s;
+        }
+        
+        .skip-link:focus {
+            top: 0;
+        }
+        
+        /* ============================================
+           MEJORA: Responsive sidebar
+           ============================================ */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            
+            .sidebar.mobile-open {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .mobile-menu-btn {
+                display: flex !important;
+            }
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            z-index: 1001;
+            background: var(--accent-blue);
+            color: white;
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 8px;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        
+        /* ============================================
+           ESTILOS: MIC - MAPA DE INVESTIGACIÓN CRIMINAL (GRAFO)
+           ============================================ */
+        #mic-canvas-container {
+            background: radial-gradient(circle at top, #0f172a 0%, #020617 55%, #000000 100%);
+            border-radius: 0 0 10px 10px;
+            min-height: 620px;
+            position: relative;
+            border-top: 1px solid rgba(148, 163, 184, 0.2);
+        }
+        
+        #mic-network {
+            width: 100%;
+            height: 620px;
+            background: transparent;
+        }
+

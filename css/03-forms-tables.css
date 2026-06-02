@@ -1,0 +1,165 @@
+        /* Section Headers - Más sutiles */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--accent-blue);
+        }
+
+        .section-header h2 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+
+        .section-header .section-number {
+            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--hover-blue) 100%);
+            color: #fff;
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.7rem;
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 0.8rem;
+            transition: all 0.2s ease;
+            background: #fff;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            box-shadow: var(--focus-ring);
+        }
+
+        /* MEJORA: Validación visual de formularios */
+        .form-control:invalid:not(:placeholder-shown) {
+            border-color: var(--danger);
+        }
+        
+        .form-control:valid:not(:placeholder-shown) {
+            border-color: var(--success);
+        }
+        
+        .form-control[required]::placeholder {
+            color: var(--text-light);
+        }
+        
+        .form-control[required]::after {
+            content: '*';
+            color: var(--danger);
+        }
+        
+        /* MEJORA: Estados de foco accesibles */
+        .btn:focus-visible,
+        .nav-item:focus-visible,
+        select:focus-visible {
+            outline: 2px solid var(--accent-blue);
+            outline-offset: 2px;
+        }
+
+        textarea.form-control {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        select.form-control {
+            cursor: pointer;
+        }
+
+        /* Radio & Checkbox Groups */
+        .radio-group, .checkbox-group {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .radio-item, .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 12px;
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.78rem;
+        }
+
+        .radio-item:hover, .checkbox-item:hover {
+            border-color: var(--accent-blue);
+            background: #eff6ff;
+        }
+
+        .radio-item.selected, .checkbox-item.selected {
+            border-color: var(--accent-blue);
+            background: #eff6ff;
+        }
+
+        .radio-item input, .checkbox-item input {
+            accent-color: var(--accent-blue);
+        }
+
+        /* Tables */
+        .table-container {
+            overflow-x: auto;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.72rem;
+        }
+
+        th {
+            background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+            color: #fff;
+            padding: 8px 10px;
+            text-align: left;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.62rem;
+            letter-spacing: 0.4px;
+        }
+
+        td {
+            padding: 8px 10px;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: middle;
+        }
+
+        tr:hover td {
+            background: #f8fafc;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+

@@ -1,0 +1,46 @@
+        /* ============================================
+           MEJORA: Variables CSS ampliadas para temas
+           ============================================ */
+        :root {
+            --primary-dark: #0a1628;
+            --primary-blue: #1e3a5f;
+            --accent-blue: #2563eb;
+            --light-blue: #3b82f6;
+            --hover-blue: #1d4ed8;
+            --bg-dark: #0f172a;
+            --bg-sidebar: #0d1b2a;
+            --bg-content: #f1f5f9;
+            --bg-card: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-light: #94a3b8;
+            --border-color: #e2e8f0;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --info: #06b6d4;
+            /* MEJORA: Variables adicionales para accesibilidad */
+            --focus-ring: 0 0 0 3px rgba(37, 99, 235, 0.4);
+            --transition-fast: 0.15s ease;
+            --transition-normal: 0.3s ease;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-content);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-size: 13px;
+        }
+

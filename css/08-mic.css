@@ -1,0 +1,156 @@
+        /* Panel de Inferencia MIC */
+        .mic-inferencia-modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.72);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2100;
+        }
+
+        .mic-inferencia-modal-backdrop.visible {
+            display: flex;
+        }
+
+        .mic-inferencia-modal {
+            background: radial-gradient(circle at top, #020617 0%, #020617 45%, #020617 100%);
+            border-radius: 16px;
+            border: 1px solid rgba(148, 163, 184, 0.6);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+            padding: 20px 22px 18px 22px;
+            width: 460px;
+            max-width: 94vw;
+            color: #e5e7eb;
+            position: relative;
+        }
+
+        .mic-inferencia-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .mic-inferencia-titulo {
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: #93c5fd;
+        }
+
+        .mic-inferencia-chip {
+            font-size: 0.68rem;
+            padding: 4px 8px;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.7);
+            background: rgba(15, 23, 42, 0.9);
+            color: #e5e7eb;
+        }
+
+        .mic-inferencia-close {
+            position: absolute;
+            top: 10px;
+            right: 12px;
+            border: none;
+            background: transparent;
+            color: #9ca3af;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .mic-inferencia-close:hover {
+            color: #e5e7eb;
+        }
+
+        .mic-inferencia-body {
+            display: flex;
+            gap: 14px;
+            margin-top: 6px;
+        }
+
+        .mic-inferencia-icono {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .mic-inferencia-textos h4 {
+            font-size: 0.85rem;
+            margin: 0 0 4px 0;
+            color: #e5e7eb;
+        }
+
+        .mic-inferencia-textos p {
+            font-size: 0.75rem;
+            margin: 0 0 6px 0;
+            color: #9ca3af;
+        }
+
+        .mic-inferencia-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #6b7280;
+            margin-bottom: 2px;
+        }
+
+        .mic-inferencia-explicacion {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed rgba(55, 65, 81, 0.8);
+            font-size: 0.78rem;
+            color: #e5e7eb;
+            line-height: 1.45;
+        }
+
+        .mic-inferencia-explicacion strong {
+            color: #fde68a;
+            font-weight: 500;
+        }
+
+        /* Cursor de interacción sobre el grafo */
+        .vis-network canvas {
+            cursor: default;
+        }
+        
+        .mic-legend {
+            position: absolute;
+            right: 16px;
+            bottom: 12px;
+            background: rgba(15, 23, 42, 0.92);
+            border-radius: 8px;
+            padding: 8px 10px;
+            font-size: 0.7rem;
+            color: #e2e8f0;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+            border: 1px solid rgba(148, 163, 184, 0.4);
+        }
+        
+        .mic-legend span {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            white-space: nowrap;
+        }
+        
+        .mic-legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 999px;
+        }
+        
+        .mic-legend-dot--hecho { background: #22c55e; }
+        .mic-legend-dot--testimonio { background: #38bdf8; border-radius: 999px; }
+        .mic-legend-dot--indicio { background: #eab308; }
+        .mic-legend-dot--hipotesis { background: #f97316; }
+        .mic-legend-dot--apoya { background: #22c55e; }
+        .mic-legend-dot--refuta { background: #ef4444; }

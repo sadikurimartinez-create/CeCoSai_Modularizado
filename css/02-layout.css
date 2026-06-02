@@ -1,0 +1,137 @@
+        /* Main Content */
+        .main-content {
+            margin-left: 0;
+            flex: 1;
+            min-height: calc(100vh - 70px);
+            display: flex;
+            flex-direction: column;
+            overflow: auto;
+        }
+
+        /* Header */
+        .header {
+            background: var(--bg-card);
+            padding: 10px 20px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-shrink: 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .header-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .header-subtitle {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+        }
+
+        .constitutional-timer {
+            display: none;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 8px 14px;
+            border-radius: 8px;
+            border: 1px solid #f59e0b;
+        }
+        .constitutional-timer.visible {
+            display: flex;
+        }
+        tr.ruido td {
+            background: #fef2f2 !important;
+        }
+
+        .constitutional-timer i {
+            color: var(--warning);
+            font-size: 1rem;
+        }
+
+        .constitutional-timer .timer-label {
+            font-size: 0.6rem;
+            color: #92400e;
+            font-weight: 500;
+        }
+
+        .constitutional-timer .timer-value {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #92400e;
+            font-family: 'Monaco', monospace;
+        }
+
+        /* Content Area */
+        .content-area {
+            padding: 20px 24px;
+            flex: 1;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.25s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Cards - Diseño más limpio y compacto */
+        .card {
+            background: var(--bg-card);
+            border-radius: 10px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+            border: 1px solid var(--border-color);
+            margin-bottom: 16px;
+            overflow: hidden;
+            transition: box-shadow 0.2s ease;
+        }
+        
+        .card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .card-header {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(135deg, #fafbfc 0%, #f5f7f9 100%);
+        }
+
+        .card-title {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-title i {
+            color: var(--accent-blue);
+            font-size: 0.9em;
+        }
+
+        .card-body {
+            padding: 14px 16px;
+        }
+
