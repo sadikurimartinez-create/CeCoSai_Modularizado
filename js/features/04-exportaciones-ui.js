@@ -109,8 +109,16 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+function sincronizarEscritosPIC() {
+    if (typeof showToast === 'function') {
+        showToast('✓ Testigos y Peritos importados dinámicamente desde el PIC.', 'success');
+    }
+    actualizarAcreditacionEscritos();
+}
+
 window.actualizarAcreditacionEscritos = actualizarAcreditacionEscritos;
 window.generarEscrito = generarEscrito;
 window.registrarEscritoEnHistorial = registrarEscritoEnHistorial;
 window.validarSugerenciasEscrito = validarSugerenciasEscrito;
+window.sincronizarEscritosPIC = sincronizarEscritosPIC;
 })();
