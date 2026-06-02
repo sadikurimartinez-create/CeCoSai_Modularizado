@@ -1,3 +1,4 @@
+(function() {
 // =============================================
 // FUNCIONES PARA HIPÓTESIS INICIAL EN NC
 // =============================================
@@ -177,3 +178,4 @@ window.modificarHipotesisNC = modificarHipotesisNC;
 window.regenerarHipotesisNC = regenerarHipotesisNC;
 window.exportarHipotesisPIC = exportarHipotesisPIC;
 window.generarMasCuestionamientos = generarMasCuestionamientos;
+})();

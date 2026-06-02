@@ -1,3 +1,4 @@
+(function() {
         // ESCALERA HEPTATÓMICA - Diccionarios de Datos
         // =============================================
         
@@ -283,3 +284,4 @@
 window.causasExcluyentes = causasExcluyentes;
 window.datosCSDCompletos = datosCSDCompletos;
 window.datosDelitosPorte = datosDelitosPorte;
+})();

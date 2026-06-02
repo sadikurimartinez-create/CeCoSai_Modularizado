@@ -1,3 +1,4 @@
+(function() {
 // ============================================
 // MÓDULO: ESCALERA HEPTATÓMICA CON IA
 // ============================================
@@ -103,3 +104,4 @@ const CodigoPenalAguascalientes = {
 window.EscaleraIA = EscaleraIA;
 window.ClasificacionesPortePetit = ClasificacionesPortePetit;
 window.CodigoPenalAguascalientes = CodigoPenalAguascalientes;
+})();
