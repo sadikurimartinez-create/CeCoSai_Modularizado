@@ -81,18 +81,22 @@ function initMICNetwork(config) {
         // con parámetros de mapa (zoom, center) para la persona investigadora criminal.
         var options = {
         autoResize: true,
-        layout: { hierarchical: { enabled: true, direction: 'UD', sortMethod: 'hubsize', levelSeparation: 150, nodeSpacing: 140 } },
-        physics: { enabled: true, hierarchicalRepulsion: { nodeDistance: 170 }, stabilization: { iterations: 200, updateInterval: 25 } },
-        interaction: { dragNodes: true, dragView: true, zoomView: true, hover: true, tooltipDelay: 80, hoverConnectedEdges: true, selectable: true },
+        layout: { hierarchical: { enabled: true, direction: 'UD', sortMethod: 'directed', levelSeparation: 250, nodeSpacing: 220 } },
+        physics: { enabled: true, hierarchicalRepulsion: { nodeDistance: 220, springLength: 150, damping: 0.09 }, solver: 'hierarchicalRepulsion', stabilization: { iterations: 250, updateInterval: 25, fit: true } },
+        interaction: { dragNodes: true, dragView: true, zoomView: true, hover: true, tooltipDelay: 50, hoverConnectedEdges: true, selectable: true, navigationButtons: true, keyboard: true },
         nodes: {
-            font: { color: '#e5e7eb', size: 14 },
-            borderWidth: 1,
-            color: { border: '#38bdf8', background: '#020617', highlight: { border: '#e5e7eb', background: '#020617' } }
+            font: { color: '#ffffff', size: 16, face: 'Inter' },
+            borderWidth: 2,
+            shadow: { enabled: true, color: 'rgba(0,0,0,0.5)', size: 10, x: 4, y: 4 },
+            color: { border: '#38bdf8', background: '#0f172a', highlight: { border: '#7dd3fc', background: '#1e293b' } },
+            margin: { top: 12, bottom: 12, left: 16, right: 16 }
         },
         edges: {
-            smooth: true,
-            arrows: { to: { enabled: true, scaleFactor: 0.8 } },
-            color: { color: '#64748b' }
+            smooth: { type: 'cubicBezier', forceDirection: 'vertical', roundness: 0.4 },
+            arrows: { to: { enabled: true, scaleFactor: 1.2 } },
+            color: { color: '#94a3b8', highlight: '#f8fafc', hover: '#cbd5e1' },
+            width: 2,
+            shadow: { enabled: true, color: 'rgba(0,0,0,0.3)', size: 5, x: 2, y: 2 }
         }
     };
         if (typeof options === 'undefined') {
@@ -107,6 +111,12 @@ function initMICNetwork(config) {
                 position: config.center || { x: 0, y: 0 }
             });
         }
+
+    // OPTIMIZACIÓN COURTROOM: Una vez estabilizado el grafo, apagamos las físicas.
+    // Esto evita que el grafo rebote si el Fiscal arrastra un nodo para explicarlo.
+    MIC_Module.network.on("stabilizationIterationsDone", function () {
+        MIC_Module.network.setOptions( { physics: false } );
+    });
 
     MIC_Module.network.on('click', function (params) {
         if (!params) return;

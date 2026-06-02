@@ -109,4 +109,40 @@ console.log("✅ Motor de Valoración MWA Activo y Validado");
 window.abrirPanelInferenciaMic = abrirPanelInferenciaMic;
 window.cerrarPanelInferenciaMic = cerrarPanelInferenciaMic;
 window.exportarMICWord = exportarMICWord;
+
+window.toggleFullscreenMIC = function() {
+    var container = document.getElementById('card-mic-lienzo');
+    var networkEl = document.getElementById('mic-network');
+    if (!container) return;
+    
+    if (!document.fullscreenElement) {
+        if (container.requestFullscreen) container.requestFullscreen();
+        else if (container.webkitRequestFullscreen) container.webkitRequestFullscreen();
+        else if (container.msRequestFullscreen) container.msRequestFullscreen();
+        
+        if (networkEl) networkEl.style.height = '100vh';
+        if (typeof showToast === 'function') showToast('Modo proyección activado.', 'info');
+    } else {
+        if (document.exitFullscreen) document.exitFullscreen();
+        else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+        else if (document.msExitFullscreen) document.msExitFullscreen();
+    }
+    
+    setTimeout(function() {
+        if (window.MIC_Module && window.MIC_Module.network) {
+            window.MIC_Module.network.redraw();
+            window.MIC_Module.network.fit();
+        }
+    }, 250);
+};
+
+document.addEventListener('fullscreenchange', function() {
+    var networkEl = document.getElementById('mic-network');
+    if (!document.fullscreenElement && networkEl) {
+        networkEl.style.height = '600px';
+        setTimeout(function() {
+            if (window.MIC_Module && window.MIC_Module.network) { window.MIC_Module.network.redraw(); window.MIC_Module.network.fit(); }
+        }, 150);
+    }
+});
 })();

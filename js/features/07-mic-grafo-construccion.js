@@ -56,9 +56,10 @@ function construirMICDesdeDatos() {
         naturaleza: 'Conclusión principal del caso',
         descripcion: 'Resultado jurídico que la Célula Investigadora busca acreditar.',
         explicacion_logica: 'Este nodo resume la verdad jurídica que se pretende demostrar ante el juez.',
-        color: { background: '#0f172a', border: '#22c55e', highlight: { background: '#16a34a', border: '#bbf7d0' } },
-        font: { color: '#bbf7d0' },
-        borderWidth: 3 // Double border for lastProbandum (main conclusion)
+        color: { background: '#022c22', border: '#22c55e', highlight: { background: '#166534', border: '#bbf7d0' } },
+        font: { color: '#bbf7d0', size: 24, bold: true },
+        borderWidth: 4,
+        margin: 20
     });
 
     // 7 átomos THD
@@ -76,9 +77,10 @@ function construirMICDesdeDatos() {
             naturaleza: 'Átomo de la Teoría Heptatómica del Delito',
             descripcion: 'Elemento estructural del delito: ' + nombre + '.',
             explicacion_logica: 'Este nodo representa el átomo ' + nombre + '. La evidencia conectada debe acreditar específicamente este elemento.',
-            color: { background: '#f97316', border: '#ea580c', highlight: { background: '#fb923c', border: '#fed7aa' } },
-            font: { color: '#fff7ed' },
-            borderWidth: 1
+            color: { background: '#7c2d12', border: '#ea580c', highlight: { background: '#9a3412', border: '#fed7aa' } },
+            font: { color: '#fff7ed', size: 18 },
+            borderWidth: 2,
+            margin: 15
         });
         edges.push({
             from: id,
@@ -137,8 +139,9 @@ function construirMICDesdeDatos() {
                     ? 'Este hecho probatorio representa un componente objetivo de la conducta o del resultado.'
                     : 'Este indicio o actividad del PIC orienta la búsqueda de evidencia corroborativa.'),
             color: { background: nodeColor.background, border: nodeColor.border, highlight: { background: nodeColor.background, border: '#fefce8' } }, // Default color, will be overridden by validation
-            borderWidth: ev.tipo === 'hecho' ? 1 : (ev.tipo === 'testimonio' ? 1 : 1), // Default border width
-            font: { color: '#e5e7eb', size: 12 }
+            borderWidth: 2,
+            font: { color: '#f8fafc', size: 14 },
+            margin: 10
         });
         var targetAtom = ev.tipo === 'hecho'
             ? atomIds['Conducta']
