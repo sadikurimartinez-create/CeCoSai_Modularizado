@@ -1,5 +1,7 @@
 (function() {
-        // ESCALERA HEPTATÓMICA - Diccionarios de Datos
+        // CeCoSAI: Centro de Control del Sistema de Arquitectura Investigativa
+        // =============================================
+        // ESCALERA HEPTATÓMICA - Diccionarios de Datos (THD)
         // =============================================
         
         const causasExcluyentes = {

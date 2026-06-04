@@ -7,7 +7,7 @@
 function generarContenidoEscrito(tipo) {
         var d = window.datosDelSistema || {};
     var narrativaElem = document.getElementById('narrativa-principal');
-    var narrativa = (narrativaElem && narrativaElem.value) ? narrativaElem.value : "Durante el período de marzo 2025 a enero 2026, el Ing. Roberto 'N', el Lic. Marco 'N', la Lic. Claudia 'N' y el Cmdte. Sergio 'N' actuaron de común acuerdo para desviar recursos públicos mediante una licitación simulada para la compra de patrullas y equipo táctico. Utilizaron la empresa fachada 'Logística y Seguridad del Centro' para emitir facturas falsas, entregando mercancía simulada (cajas con papel periódico y piedras). Las ganancias ilícitas fueron distribuidas entre los participantes. La Arq. Elena Santoyo fue amenazada y forzada a abandonar el estado. El periodista Juan Carlos Ruiz fue emboscado y disparado el 20 de enero de 2026, resultando con secuelas permanentes.";
+    var narrativa = (narrativaElem && narrativaElem.value) ? narrativaElem.value : "[No se ha redactado narrativa para este caso]";
     var fechaActual = new Date().toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric' });
     var horaActual = new Date().toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit' });
         var acreditacion = typeof window.calcularAcreditacionPorTipo === 'function' ? window.calcularAcreditacionPorTipo(tipo) : 80;

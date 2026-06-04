@@ -20,7 +20,7 @@ function exportarWordReal() {
         <body>\
             ' + docContent + '\
             <hr style="margin-top:50px;">\
-            <p style="font-size:9pt; color:#666;">Generado por CeCoSAI v7.2 - Sistema Integral de Gestión de Investigación Criminal</p>\
+            <p style="font-size:9pt; color:#666;">Generado por CeCoSAI v7.2 - Centro de Control del Sistema de Arquitectura Investigativa</p>\
             <p style="font-size:9pt; color:#666;">Trazabilidad ID: ESC-' + Date.now() + '</p>\
         </body>\
         </html>\
@@ -65,7 +65,7 @@ function exportarEscritoDirecto(tipo) {
         <body>\
             ' + contenido + '\
             <hr style="margin-top:50px; border: 1px solid #ccc;">\
-            <p style="font-size:9pt; color:#666; text-align:center;">Generado por CeCoSAI v7.2 - Sistema Integral de Gestión de Investigación Criminal</p>\
+            <p style="font-size:9pt; color:#666; text-align:center;">Generado por CeCoSAI v7.2 - Centro de Control del Sistema de Arquitectura Investigativa</p>\
             <p style="font-size:9pt; color:#666; text-align:center;">Trazabilidad ID: ESC-' + tipo.toUpperCase() + '-' + Date.now() + '</p>\
             <p style="font-size:9pt; color:#666; text-align:center;">Fecha de generación: ' + new Date().toLocaleString('es-MX') + '</p>\
         </body>\

@@ -19,8 +19,8 @@ function initMIC() {
 
 function cargarDatosParaMIC() {
     MIC_Module.datosNC = MIC_Module.datosNC || {
-        carpeta: 'CI/AGS/CV/2025-001',
-        caso: 'Consorcio Vigilante'
+        carpeta: '',
+        caso: ''
     };
     MIC_Module.datosPIC = MIC_Module.datosPIC || [];
     if (typeof currentCase !== 'undefined' && currentCase) {

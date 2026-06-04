@@ -18,8 +18,9 @@ function generarHipotesisInicialNC() {
     
     // Simular procesamiento IA
     setTimeout(function() {
+        const narrativaExtraida = document.getElementById('narrativa-principal') ? document.getElementById('narrativa-principal').value : '';
         // Generar texto de hipótesis
-        const textoHipotesis = 'Durante el período comprendido entre marzo de 2025 y enero de 2026, el <strong>Ingeniero Roberto "N"</strong>, aprovechando su posición como alto mando en la administración pública, en coautoría con el <strong>Licenciado Marco "N"</strong> (propietario de la empresa fachada "Logística y Seguridad del Centro"), la <strong>Licenciada Claudia "N"</strong> (encargada de autorizaciones de pago) y el <strong>Comandante Sergio "N"</strong> (elemento policial), ejecutaron de manera concertada y sistemática un esquema de extracción de recursos públicos mediante la simulación de un proceso de licitación para la adquisición de patrullas y equipo táctico. Los imputados utilizaron facturación falsa y entregaron mercancía simulada (cajas con papel periódico y piedras en lugar del equipo real), distribuyendo posteriormente las ganancias ilícitas según acuerdo previo: Roberto 40%, Claudia 20%, Sergio 10% y Marco el resto. Ante el descubrimiento de las irregularidades por parte de la <strong>Arq. Elena Santoyo</strong> (jefa de almacén), procedieron a amenazarla hasta forzarla a abandonar el estado. Posteriormente, el 20 de enero de 2026, tras la publicación de una investigación periodística, emboscaron y dispararon contra el periodista <strong>Juan Carlos Ruiz</strong> en Av. López Mateos, resultando este con secuelas permanentes.';
+        const textoHipotesis = narrativaExtraida ? 'Hipótesis basada en: ' + narrativaExtraida.substring(0, 100) + '... (Conecte su API para extraer los hechos clave)' : '[Por favor, ingrese una narrativa en el paso anterior para generar la hipótesis inicial.]';
         
         document.getElementById('texto-hipotesis-generada').innerHTML = textoHipotesis;
         
@@ -131,7 +132,7 @@ function regenerarHipotesisNC() {
     estadoHipotesis.className = 'badge-status badge-info';
     
     setTimeout(function() {
-        let textoAjustado = 'Durante el período comprendido entre <strong>marzo de 2025</strong> y <strong>enero de 2026</strong>, el <strong>Ingeniero Roberto "N"</strong>, en su calidad de servidor público de alto rango, diseñó y ejecutó en coautoría con <strong>Marco "N"</strong>, <strong>Claudia "N"</strong> y <strong>Sergio "N"</strong>, un esquema delictivo para la extracción sistemática de recursos del erario público. El modus operandi consistió en: (1) simular un proceso de licitación pública, (2) crear una empresa fachada para facturar operaciones ficticias, (3) entregar mercancía simulada, y (4) distribuir las ganancias ilícitas. Ante el riesgo de exposición, los imputados procedieron a intimidar testigos y atentar contra la vida del periodista que investigaba el caso.';
+        let textoAjustado = document.getElementById('texto-hipotesis-generada').innerHTML;
         
         if (observacion) {
             textoAjustado += '<br><br><em style="color: #3b82f6;">[Ajuste aplicado según observaciones del Fiscal: ' + observacion + ']</em>';

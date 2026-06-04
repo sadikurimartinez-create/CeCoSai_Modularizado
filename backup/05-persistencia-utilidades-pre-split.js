@@ -502,6 +502,39 @@ document.addEventListener('keydown', (e) => {
             document.body.style.overflow = '';
         });
     }
+    
+    // Ctrl/Cmd + Shift + D = Modo Demo Automático (Auto-llenado Mágico)
+    if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key.toLowerCase() === 'd') {
+        e.preventDefault();
+        if (typeof showToast === 'function') showToast('🚀 Activando Auto-Llenado Comercial (Modo Demo)...', 'info');
+        
+        // 1. Llenar Noticia Criminal
+        const narrativa = document.getElementById('narrativa-principal');
+        if (narrativa) {
+            narrativa.value = "Durante el período de marzo 2025 a enero 2026, el Ing. Roberto 'N', el Lic. Marco 'N', la Lic. Claudia 'N' y el Cmdte. Sergio 'N' actuaron de común acuerdo para desviar recursos públicos mediante una licitación simulada para la compra de patrullas y equipo táctico. Utilizaron la empresa fachada 'Logística y Seguridad del Centro' para emitir facturas falsas, entregando mercancía simulada (cajas con papel periódico y piedras). Las ganancias ilícitas fueron distribuidas entre los participantes. La Arq. Elena Santoyo fue amenazada y forzada a abandonar el estado. El periodista Juan Carlos Ruiz fue emboscado y disparado el 20 de enero de 2026, resultando con secuelas permanentes.";
+        }
+        
+        // 2. Disparar extracción de Hipótesis y 3. Armar la Escalera
+        if (typeof window.generarHipotesisInicialNC === 'function') {
+            window.generarHipotesisInicialNC();
+        }
+        
+        setTimeout(() => {
+            const csdSelector = document.getElementById('csd-selector');
+            if (csdSelector) {
+                csdSelector.value = 'csd-01'; // Pre-seleccionar Ing. Roberto "N"
+                if (typeof window.seleccionarCSDEscalera === 'function') window.seleccionarCSDEscalera();
+                
+                setTimeout(() => {
+                    const delitoSelector = document.getElementById('delito-selector');
+                    if (delitoSelector) {
+                        delitoSelector.value = 'Peculado';
+                        if (typeof window.seleccionarDelitoEscalera === 'function') window.seleccionarDelitoEscalera();
+                    }
+                }, 800);
+            }
+        }, 2500); // 2.5 segundos de espera para lucir la animación del spinner
+    }
 });
 
 // ============================================
